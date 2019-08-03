@@ -17,22 +17,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import DrugMain from './components/DrugMain';
 import Store from './components/Store';
-import Login from './components/Login';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import ModaLogin from './components/modalLogin'
 
 /* SASS */
 const styles = theme => ({
   icon: {
     marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(10, 0, 6),
-    
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
@@ -63,16 +55,7 @@ const styles = theme => ({
 });
 
 
-/* 정적 데이터 호출*/
-function MadeWithLove() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Built with love by the '}
-        Material-UI
-      {' team.'}
-    </Typography>
-  );
-}
+
 
 class App extends Component {
   constructor(props) {
@@ -96,7 +79,7 @@ class App extends Component {
     const { classes } = this.props;
       return (
         <Router>
-           
+          {/* App Bar */} 
           <CssBaseline />
             <AppBar position="relative">
               <Toolbar className={classes.newheader}>
@@ -129,7 +112,8 @@ class App extends Component {
             
             {/*Main Content */}
              <div>
-                <Login opens={this.state.opens} send={this.handleSendClose} />                
+                {/*<Login  /> */}  
+                <ModaLogin opens={this.state.opens} send={this.handleSendClose}/>             
                 {/* Route Link 생성*/}
                 <Switch> 
                   <Route exact path="/" component={DrugMain}/>     {/* Main 약검색 */}
@@ -143,9 +127,12 @@ class App extends Component {
                 Footer
               </Typography>
               <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                Something here to give the footer a purpose!
+                COPYRIGHT(C) 2019 DSS. ALL RIGHTS RESERVED.
               </Typography>
-              <MadeWithLove />
+              <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+                11, Gimpohangang 9-ro, Gimpo-si, Gyeonggi-do, Republic of Korea TEL : 02-123-1234  E-MAIL : help@Dss.com
+              </Typography>
+        
             </footer>
             {/* End footer */}
           </Router>

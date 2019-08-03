@@ -5,12 +5,9 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
 import { withStyles } from '@material-ui/core/styles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import DurgAd from './DrugAd'
-
+import Select from 'react-select';
 
 const styles = theme => ({
     icon: {
@@ -23,50 +20,17 @@ const styles = theme => ({
     },
     heroButtons: {
       marginTop: theme.spacing(4),
-    },
-    cardGrid: {
-      paddingTop: theme.spacing(8),
-      paddingBottom: theme.spacing(8),
-    },
-    card: {
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    cardMedia: {
-      paddingTop: '56.25%', // 16:9
-    },
-    cardContent: {
-      flexGrow: 1,
-    },
-    
-    footer: {
-      backgroundColor: theme.palette.background.paper,
-      padding: theme.spacing(6),
-    },
-    // New Css Insert
-    newheader :{
-      paddingLeft: '70px',
-    },
-    grow: {
-      flexGrow: 1,
-    },
-    Loginmargin: {
-      marginRight:'7%',
-      color:'#fff',
-      '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.5),
-      },
-    },
-    GridImgBox:{
-      display:'flex'
     }
-  });
+ });
 
-
+  const techCompanies = [
+    { label: "약 이름", value: 1 },
+    { label: "약 모양", value: 2 },
+  ];
+  
 class DrugMain extends Component {
 
-    render() {
+  render() {
         const { classes } = this.props;
         return (
           <div>
@@ -76,19 +40,16 @@ class DrugMain extends Component {
                 What drug information would you like to know about?
               </Typography>
               <Container maxWidth="sm">
-                <InputGroup className="mb-3">
-                  <DropdownButton
-                    as={InputGroup.Prepend}
-                    variant="outline-secondary"
-                    title="선택해주세요"
-                    id="input-group-dropdown-1"
-                  >
-                    <Dropdown.Item eventKey="1">약 검색</Dropdown.Item>
-                    <Dropdown.Item eventKey="2">약 이름</Dropdown.Item>
-                    <Dropdown.Item eventKey="3">약 모양</Dropdown.Item>
-                  </DropdownButton>
+              <div >
+           
+                  <InputGroup className="mb-4">
+                  <div className="col-md-3">
+                  <Select options={ techCompanies } />
+                  </div>
                   <FormControl aria-describedby="basic-addon1" />
                 </InputGroup>
+              </div>
+               
               
                 <div className={classes.heroButtons}>
                   <Grid container spacing={2} justify="center">
