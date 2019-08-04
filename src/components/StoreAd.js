@@ -1,115 +1,82 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/core/styles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import  store  from '../img/store.jpg';
+import StoreCard from './StoreCard';
 
 const styles = theme => ({
-    icon: {
-      marginRight: theme.spacing(2),
-    },
-    heroContent: {
-      backgroundColor: theme.palette.background.paper,
-      padding: theme.spacing(10, 0, 6),
-      
-    },
-    heroButtons: {
-      marginTop: theme.spacing(4),
-    },
-    cardGrid: {
-      paddingTop: theme.spacing(8),
-      paddingBottom: theme.spacing(8),
-    },
-    card: {
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    cardMedia: {
-      paddingTop: '56.25%', // 16:9
-    },
-    cardContent: {
-      flexGrow: 1,
-    },
-    
-    footer: {
-      backgroundColor: theme.palette.background.paper,
-      padding: theme.spacing(6),
-    },
-    // New Css Insert
-    newheader :{
-      paddingLeft: '70px',
-    },
-    grow: {
-      flexGrow: 1,
-    },
-    Loginmargin: {
-      marginRight:'7%',
-      color:'#fff',
-      '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.5),
-      },
-    },
-    GridImgBox:{
-      display:'flex',
-      width: '90%',
-      margin: '0 auto',
+  roots: {
+    flexGrow: 1,
+  },
+  icon: {
+    marginRight: theme.spacing(2),
+  },
 
-    }
-  });
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
 
-const cards = [1, 2, 3];
+  GridImgBox : {
+    width:'100%',
+    padding:'1rem',
+  },
+  
+});
 
 class StoreAd extends Component {
+  state ={};
+
+  componentDidMount() {
+    this._getMovies();
+  }
+
+  _getMovies = async () => {
+    const movies = await this._callApi();
+      this.setState({
+        movies
+      });
+  };
+
+  _callApi =() => {
+    return fetch(
+        "http://211.239.124.237:19613/store/address/%EC%9D%B8%EC%B2%9C/%EA%B0%95%ED%99%94%EA%B5%B0"
+      )
+      .then(Response =>Response.json())
+      .then(json => json)
+      .catch(err =>console.log(err));
+  }
+
+  _renderMovies = () => {
+    const movies = this.state.movies.map((drug) => {
+      return (
+        <StoreCard key={drug.rnum}      /*약 고유 ID */
+      
+          />
+        )
+    });
+    return movies;
+   }
+
     render() {
         const { classes } = this.props;
+        const { movies } = this.state;
         return (
-            <div>
-                <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom style={{marginTop:'3%'}}>
-                    BEST ITEM
-                </Typography>
-                <Container className={classes.cardGrid} maxWidth="md">
-                {/* End hero unit */}
-                <Grid container spacing={4}>
-                    {cards.map(card => (
-                    <Grid item key={card} xs={12} sm={6} md={4}>
-                        <Card className={classes.card}>
-                            <CardMedia
-                            className={classes.cardMedia}
-                            image="https://source.unsplash.com/random"
-                            title="Image title"
-                        />
-                        <CardContent className={classes.cardContent}>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Heading
-                            </Typography>
-                            <Typography>
-                                This is a media card. You can use this section to describe the content.
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                        <Button size="small" color="primary">
-                          View
-                        </Button>
-                        <Button size="small" color="primary">
-                          Edit
-                        </Button>
-                      </CardActions>
-                    </Card>
-                  </Grid>
-                ))}
+            <div className={classes.roots}>
+              <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom style={{marginTop:'3%'}}>
+                BEST ITEM
+              </Typography>
+              <Container className={classes.cardGrid} maxWidth="md">
+              {/* End hero unit */}
+              <Grid container spacing={1} >
+               {movies ? this._renderMovies() : ""}
                  <div className={classes.GridImgBox} >
-                  <img src={ store } alt="img" style={ {width:"100%"}}/>
+                   <img src={ store } alt="img" style={ {width:"100%"}}/>
                  </div>
               </Grid>
-            </Container>
+              </Container>
             </div>
         );
     }

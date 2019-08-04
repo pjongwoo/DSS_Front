@@ -40,17 +40,14 @@ class DrugMain extends Component {
                 What drug information would you like to know about?
               </Typography>
               <Container maxWidth="sm">
-              <div >
-           
-                  <InputGroup className="mb-4">
-                  <div className="col-md-3">
-                  <Select options={ techCompanies } />
-                  </div>
-                  <FormControl aria-describedby="basic-addon1" />
-                </InputGroup>
-              </div>
-               
-              
+                <div>
+                    <InputGroup className="mb-4">
+                    <div className="col-md-3">
+                    <Select options={ techCompanies } />
+                    </div>
+                    <FormControl aria-describedby="basic-addon1" />
+                  </InputGroup>
+                </div>
                 <div className={classes.heroButtons}>
                   <Grid container spacing={2} justify="center">
                     <Grid item>

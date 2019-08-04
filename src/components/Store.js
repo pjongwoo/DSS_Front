@@ -5,8 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
+import Select from 'react-select';
 import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import StoreAd from './StoreAd'
@@ -65,7 +64,15 @@ const styles = theme => ({
     }
   });
 
-
+  const techCompanies = [
+    { label: "서울", value: 1 },
+    { label: "인천", value: 2 },
+    { label: "경기", value: 3 },
+    { label: "부산", value: 4 },
+    { label: "대구", value: 5 },
+    { label: "대전", value: 6 },
+    { label: "세종", value: 7 },
+  ];
 class Store extends Component {
     render() {
         const { classes } = this.props;
@@ -77,19 +84,14 @@ class Store extends Component {
                       You need pharmacy location information?
                     </Typography>
                     <Container maxWidth="sm">
-                    <InputGroup className="mb-3">
-                        <DropdownButton
-                            as={InputGroup.Prepend}
-                             variant="outline-secondary"
-                            title="선택해주세요"
-                            id="input-group-dropdown-1">
-                            <Dropdown.Item eventKey="1">약 검색</Dropdown.Item>
-                            <Dropdown.Item eventKey="2">약 이름</Dropdown.Item>
-                            <Dropdown.Item eventKey="3">약 모양</Dropdown.Item>
-                            </DropdownButton>
-                            <FormControl aria-describedby="basic-addon1" />
-                    </InputGroup>
-              
+                    <div>
+                      <InputGroup className="mb-4">
+                    <div className="col-md-3">
+                      <Select options={ techCompanies } />
+                    </div>
+                    <FormControl aria-describedby="basic-addon1" />
+                     </InputGroup>
+                    </div>
                     <div className={classes.heroButtons}>
                     <Grid container spacing={2} justify="center">
                         <Grid item>

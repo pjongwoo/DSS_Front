@@ -56,14 +56,17 @@ class DrugAd extends Component {
   _renderMovies = () => {
     const movies = this.state.movies.map((drug) => {
       return (
-        <DrugCard key={drug.id} 
-            pro_basic={drug.name} 
-            validity={drug.validity}
-            company_name={drug.company_name}
-            div_name={drug.div_name}
-            crude={drug.crude}
-            ingredient_detail={drug.ingredient_detail}
-            big_image={drug.big_image}
+        <DrugCard key={drug.id}      /*약 고유 ID */
+            pro_basic={drug.name}    /* 약품 구분 */
+            validity={drug.validity} /* 약 유통기한 */
+            company_name={drug.company_name} /*제조 회사 */
+            div_name={drug.div_name} /* 약 효능 (Sample) */
+            crude={drug.crude}       /*약 모양 */
+            ingredient_detail={drug.ingredient_detail} /*약 성분 */
+            big_image={drug.big_image} /* 약이미지 */
+            usage ={drug.usage} /*약 복용법 */
+            name={drug.name} /*약 이름 */
+            manufacturing={drug.manufacturing} /*약효능 (Detail) */
             id={drug.id}
             />
         )
@@ -83,9 +86,9 @@ class DrugAd extends Component {
               {/* End hero unit */}
               <Grid container spacing={4}>
                  {movies ? this._renderMovies() : ""}
-                <div className={classes.GridImgBox} >
-                  <img src={ pc_main_ba_3 } alt="img" style={ {width:"100%"}}/>
-                </div>
+                 <div className={classes.GridImgBox} >
+                   <img src={ pc_main_ba_3 } alt="img" style={ {width:"100%"}}/>
+                 </div>
               </Grid>
             </Container>
         </div>
