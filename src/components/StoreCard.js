@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Button from '@material-ui/core/Button';
 import  StoreCards  from '../img/StoreCard.jpg';
-import StoreMap from './StoreMap'
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
 
@@ -54,15 +54,13 @@ class StoreCard extends Component {
     render() {
         const { classes } = this.props;
         const movies = this.props;
+        const url = "/StoreParm?left="+ movies.wgs84Lon +"&right=" + movies.wgs84Lat;
 
         return (
+   
           <Grid item xs={12} sm={6} >
-            <StoreMap   
-               opens={this.state.opens} 
-               send={this.handleSendClose} 
-            />
             <Paper className={classes.paper}>
-              <Grid container spacing={1} >
+              <Grid container spacing={3} >
                 <Grid item>
                   <ButtonBase className={classes.image}>
                     <img className={classes.img} alt="complex" src={ StoreCards } />
@@ -81,22 +79,21 @@ class StoreCard extends Component {
                         전화 번호 : {movies.dutyTel1 }
                       </Typography>
                     </Grid>
+                    <Link to={url}>
                     <Button 
                         variant="contained" 
                         className={classes.button} 
                         style={{ cursor: 'pointer' }}  
-                        onClick={this.handleClickOpen}> 
+                        > 
                         Detail 
                     </Button>
-             
-              
+                    </Link>
                   </Grid>
                 </Grid>
               </Grid>
             </Paper>
-          
-
           </Grid>
+     
            
         );
     }

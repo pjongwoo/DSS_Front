@@ -20,6 +20,7 @@ import Store from './components/Store';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import ModaLogin from './components/modalLogin'
+import StoreParm from './components/StoreParm'
 
 /* SASS */
 const styles = theme => ({
@@ -114,7 +115,8 @@ class App extends Component {
                 {/* Route Link 생성*/}
                 <Switch> 
                   <Route exact path="/" component={DrugMain}/>     {/* Main 약검색 */}
-                   <Route path="/Store" component={Store}/>  {/* 약국 검색*/}          
+                   <Route path="/Store" component={Store}/>  {/* 약국 검색*/}   
+                   <Route path="/StoreParm" component={StoreParm}/>  {/* 약국 검색*/}          
                 </Switch>
             </div>
 

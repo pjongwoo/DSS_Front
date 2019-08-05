@@ -1,55 +1,38 @@
 /*global daum*/
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
+import { withStyles } from '@material-ui/core/styles';
 
+const styles = theme => ({
+
+    roots: {
+        flexGrow: 1,
+        paddong:'1rme',
+        width:'100%',
+      },
+   
+});
 
 class StoreMap extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            open:false
-        }
-        this.handleClose = this.handleClose.bind(this)
+    componentDidMount() {
+      const vals = this.props.plase
+      console.log(vals.left)
+      console.log(vals.right)                                      
+      let el = document.getElementById('map');
+      let map = new daum.maps.Map(el, {
+        center: new daum.maps.LatLng(vals.right, vals.left)
+      });
+      new daum.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: new daum.maps.LatLng(vals.right, vals.left)
+      });
     }
-    componentDidMount() {      
- 
-    
-      }
-
-    componentWillReceiveProps(nextProps){
-        this.setState({
-            open:nextProps.opens
-        });
-    }
-
-    handleClose() {
-        this.props.send(false)
-        this.setState({
-            open: false
-        });   
-     }
-
     render() {
-        return (
-            <div>
-                <Dialog onClose={this.handleClose} open={this.state.open}>
-                    <DialogTitle onClose={this.handleClose}>
-                        <h1> 약국 MAP </h1>   
-                    </DialogTitle>
-                    <DialogContent>
-                      
-                    </DialogContent>
-                    <DialogActions>
-                        <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
-                    </DialogActions>
-                </Dialog>
-            </div>
-        );
+    const { classes } = this.props;
+      return (
+        <div className={classes.roots}>
+          <div className="map" id="map" style={ { width: '90%', height: '500px' ,margin: '0 auto' }}> >  </div>
+        </div>
+      );
     }
-}
-
-export default StoreMap;
+  }
+  export default withStyles(styles)(StoreMap);
