@@ -4,7 +4,9 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import Button from '@material-ui/core/Button';
 import  StoreCards  from '../img/StoreCard.jpg';
+import StoreMap from './StoreMap'
 
 const styles = theme => ({
 
@@ -24,14 +26,41 @@ const styles = theme => ({
         maxWidth: '100%',
         maxHeight: '100%',
       },
+      button: {
+        margin: theme.spacing(1),
+        width: '35%',
+        padding: '1px',
+      },
+      input: {
+        display: 'none',
+      },
   });
 
 class StoreCard extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+        opens : false
+      }
+    }
+       /* handle 함수  */
+    handleDrawerToggle = () => this.setState({toggle: !this.state.toggle})
+    handleClickOpen = () => this.setState({ opens: !this.state.opens})
+    handleSendClose = (data) => {
+        this.setState({
+           opens : data
+         })
+    }
     render() {
         const { classes } = this.props;
+        const movies = this.props;
 
         return (
           <Grid item xs={12} sm={6} >
+            <StoreMap   
+               opens={this.state.opens} 
+               send={this.handleSendClose} 
+            />
             <Paper className={classes.paper}>
               <Grid container spacing={1} >
                 <Grid item>
@@ -42,21 +71,25 @@ class StoreCard extends Component {
                 <Grid item xs={12} sm container>
                   <Grid item xs container direction="column"  spacing={2}>
                     <Grid item xs>
-                      <Typography gutterBottom variant="subtitle1">
-                        Standard license
+                      <Typography   gutterBottom variant="subtitle1">
+                        약국명 : {movies.dutyName}
                       </Typography>
                       <Typography variant="body2" gutterBottom>
-                        Full resolution 1920x1080 • JPEG
+                        약국 주소 : {movies.dutyAddr}
                       </Typography>
                       <Typography variant="body2" color="textSecondary">
-                        ID: 1030114
+                        전화 번호 : {movies.dutyTel1 }
                       </Typography>
                     </Grid>
-                    <Grid item>
-                      <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                        Remove
-                      </Typography>
-                    </Grid>
+                    <Button 
+                        variant="contained" 
+                        className={classes.button} 
+                        style={{ cursor: 'pointer' }}  
+                        onClick={this.handleClickOpen}> 
+                        Detail 
+                    </Button>
+             
+              
                   </Grid>
                 </Grid>
               </Grid>

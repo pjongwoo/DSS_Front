@@ -50,11 +50,16 @@ class StoreAd extends Component {
   }
 
   _renderMovies = () => {
-    const movies = this.state.movies.map((drug) => {
+    const movies = this.state.movies.map((Store) => {
       return (
-        <StoreCard key={drug.rnum}      /*약 고유 ID */
-      
-          />
+        <StoreCard 
+            key={Store.rnum}           /*약국  고유 ID */
+            dutyAddr={Store.dutyAddr}  /*약국 주소 */
+            dutyName ={Store.dutyName} /*약국 이름 */
+            dutyTel1 ={Store.dutyTel1} /*약국 전화번호 */
+            wgs84Lon ={Store.wgs84Lon} /*X좌표 */
+            wgs84Lat ={Store.wgs84Lat} /*Y좌표 */
+            />
         )
     });
     return movies;

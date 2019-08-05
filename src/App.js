@@ -17,7 +17,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import DrugMain from './components/DrugMain';
 import Store from './components/Store';
-import test from './components/test';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import ModaLogin from './components/modalLogin'
