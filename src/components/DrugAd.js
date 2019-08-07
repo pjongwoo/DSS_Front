@@ -32,8 +32,10 @@ class DrugAd extends Component {
   };
 
   _callApi =() => {
+    const drugName = this.props.drugName;
+
     return fetch(
-        "http://211.239.124.237:19613/drug/findName/%ED%83%80%EC%9D%B4"
+        "http://211.239.124.237:19613/drug/findName/" + drugName
       )
       .then(Response =>Response.json())
       .then(json => json)
