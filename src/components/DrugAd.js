@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/core/styles';
-import  pc_main_ba_3  from '../img/pc_main_ba_3.jpg';
 import DrugCard from './DrugCard'
 
 
@@ -16,19 +15,7 @@ const styles = theme => ({
       paddingTop: theme.spacing(8),
       paddingBottom: theme.spacing(8),
     },
-    card: {
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    cardMedia: {
-      paddingTop: '56.25%', // 16:9
-    },
-    cardContent: {
-      flexGrow: 1,
-    },
-    
-  });
+});
 
 class DrugAd extends Component {
   state ={};
@@ -80,15 +67,12 @@ class DrugAd extends Component {
         return (
         <div>
              <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom style={{marginTop:'3%'}}>
-                BEST ITEM
+                Search Results
               </Typography>
               <Container className={classes.cardGrid} maxWidth="md">
               {/* End hero unit */}
               <Grid container spacing={4}>
                  {movies ? this._renderMovies() : ""}
-                 <div className={classes.GridImgBox} >
-                   <img src={ pc_main_ba_3 } alt="img" style={ {width:"100%"}}/>
-                 </div>
               </Grid>
             </Container>
         </div>

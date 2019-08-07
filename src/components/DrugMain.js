@@ -8,6 +8,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import { withStyles } from '@material-ui/core/styles';
 import DurgAd from './DrugAd'
 import Select from 'react-select';
+import  pc_main_ba_3  from '../img/pc_main_ba_3.jpg';
 
 const styles = theme => ({
     icon: {
@@ -18,9 +19,18 @@ const styles = theme => ({
       padding: theme.spacing(10, 0, 6),
       
     },
+   
+    GridImgBox : {
+      borderTop:'1px solid #e9e9e9;',
+      width:'100%',
+      background:'#fff',
+      textAlign : 'center',
+    
+    },
     heroButtons: {
       marginTop: theme.spacing(4),
     }
+    
  });
 
   const techCompanies = [
@@ -30,8 +40,39 @@ const styles = theme => ({
   
 class DrugMain extends Component {
 
+
+  constructor(props) {
+    super(props);
+    this.state = {
+        drugName: '',
+        select:'',
+        opens:false,
+    }
+    this.handleValueChange = this.handleValueChange.bind(this)
+  }
+
+  handleValueChange(e) {
+    let nextState = {};
+    nextState[e.target.name] = e.target.value;
+    this.setState(nextState);    
+  }
+
+  // handleClickOpen = () => this.setState({ 
+  //     opens: !this.state.opens
+  // })
+
+  handleClickOpen = () => {
+
+    const test2 = this.state.select
+    console.log(test2);
+    this.setState({
+      opens: !this.state.opens
+    })
+  }
   render() {
         const { classes } = this.props;
+        const  DrugAdShow  = this.state.opens;
+
         return (
           <div>
             {/* Hero unit */}
@@ -43,15 +84,15 @@ class DrugMain extends Component {
                 <div>
                     <InputGroup className="mb-4">
                     <div className="col-md-3">
-                    <Select options={ techCompanies } />
-                    </div>
-                    <FormControl aria-describedby="basic-addon1" />
+                        <Select options={ techCompanies } />
+                      </div>
+                      <FormControl aria-describedby="basic-addon1" name="drugName" value={this.state.drugName} onChange={this.handleValueChange} />
                   </InputGroup>
                 </div>
                 <div className={classes.heroButtons}>
                   <Grid container spacing={2} justify="center">
                     <Grid item>
-                      <Button variant="contained" color="primary"> 
+                      <Button variant="contained" color="primary" onClick={this.handleClickOpen}> 
                         Search
                       </Button>
                     </Grid>
@@ -59,7 +100,10 @@ class DrugMain extends Component {
                 </div>
               </Container>
             </div>
-             <DurgAd/>
+             {DrugAdShow ? <DurgAd/> : ""}
+             <div className={classes.GridImgBox} >
+                <img src={ pc_main_ba_3 } alt="img" style={ {width:"80%" , marginTop:'5%'}}/>
+            </div>
           </div>
    
         );

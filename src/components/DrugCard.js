@@ -91,16 +91,13 @@ class DrugCard extends Component {
                       <Typography>
                         제조 회사 : {movies.company_name}
                       </Typography>
-                      <Typography>
-                      
-                         <LinesEllipsis
+                      <LinesEllipsis
                            text={movies.manufacturing}
                             maxLine='2'
                             ellipsis='...'
                             trimRight
                             basedOn='letters'
-                          />  
-                      </Typography>
+                      />  
                       </CardContent>
                       <CardActions>
                         <Button size="small" color="primary" onClick={this.handleClickOpen} >detail</Button>

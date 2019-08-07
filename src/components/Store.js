@@ -74,8 +74,13 @@ const styles = theme => ({
     { label: "세종", value: 7 },
   ];
 class Store extends Component {
+    state ={
+      opens:false,
+    };
+    handleClickOpen = () => this.setState({ opens: !this.state.opens})
     render() {
         const { classes } = this.props;
+        const  StoreAdShow  = this.state.opens
         return (
             <div>
                 {/* Hero unit */}
@@ -95,7 +100,7 @@ class Store extends Component {
                     <div className={classes.heroButtons}>
                     <Grid container spacing={2} justify="center">
                         <Grid item>
-                        <Button variant="contained" color="primary"> 
+                        <Button variant="contained" color="primary" onClick={this.handleClickOpen}> 
                             Search
                         </Button>
                         </Grid>
@@ -103,7 +108,8 @@ class Store extends Component {
                     </div>
                     </Container>
                 </div>
-                <StoreAd/>
+                {StoreAdShow ? <StoreAd/> : ""}
+             
             </div>
         );
     }

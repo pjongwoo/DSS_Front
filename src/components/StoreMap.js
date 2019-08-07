@@ -1,6 +1,7 @@
 /*global daum*/
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
 
@@ -29,7 +30,11 @@ class StoreMap extends Component {
     render() {
     const { classes } = this.props;
       return (
+       
         <div className={classes.roots}>
+           <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom style={{marginTop:'3%'}}>
+            Search location 
+        </Typography>
           <div className="map" id="map" style={ { width: '90%', height: '500px' ,margin: '0 auto' }}> >  </div>
         </div>
       );

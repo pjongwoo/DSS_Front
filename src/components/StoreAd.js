@@ -71,7 +71,7 @@ class StoreAd extends Component {
         return (
             <div className={classes.roots}>
               <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom style={{marginTop:'3%'}}>
-                BEST ITEM
+                  Search Results
               </Typography>
               <Container className={classes.cardGrid} maxWidth="md">
               {/* End hero unit */}
