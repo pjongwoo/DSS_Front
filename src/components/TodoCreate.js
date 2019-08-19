@@ -47,40 +47,40 @@ const CircleButton = styled.button`
 `;
 
 const InsertFormPositioner = styled.div`
-        width:100%;
-        bottom:0;
-        left:0;
-        position: absolute;
+    width:100%;
+    bottom:0;
+    left:0;
+    position: absolute;
 `;
 
 const InsrtForm = styled.div`
-        background:#f8f9fa;
-        padding:32px;
-        padding-bottom:72px;
-        border-bottom-left-radius:16px;
-        border-bottom-right-radius:16px;
-        border-top : 1px solid #e9ecef;
+    background:#f8f9fa;
+    padding:32px;
+    padding-bottom:72px;
+    border-bottom-left-radius:16px;
+    border-bottom-right-radius:16px;
+    border-top : 1px solid #e9ecef;
 `;
 
 const Input = styled.input`
-        padding:12px;
-        border-radius:4px;
-        border : 1px solid #dee2e6;
-        width:100%;
-        outline: none;
-        font-size : 18px;
-        box-sizing: border-box;
+    padding:12px;
+    border-radius:4px;
+    border : 1px solid #dee2e6;
+    width:100%;
+    outline: none;
+    font-size : 18px;
+    box-sizing: border-box;
 `;
 
 const AddButton =styled.button`
-        padding:12px;
-        border-radius:4px;
-        border : 1px solid #dee2e6;
-        width:100%;
-        outline: none;
-        font-size : 18px;
-        box-sizing: border-box;
-        margin-top: 10px;
+    padding:12px;
+    border-radius:4px;
+    border : 1px solid #dee2e6;
+    width:100%;
+    outline: none;
+    font-size : 18px;
+    box-sizing: border-box;
+    margin-top: 10px;
 `;
 
 function TodoCreate({data, events }){
@@ -94,10 +94,9 @@ function TodoCreate({data, events }){
         setOpen(!open);
         events();
     }
-
-        
+    
     /* 등록 API 호출 */
-    const addCustomer = (e) => {
+    const addDrug = (e) => {
         const url = 'http://localhost:8080/userdrug/';
         const formData = new FormData();
         formData.append('drug', drug)
@@ -105,14 +104,11 @@ function TodoCreate({data, events }){
         formData.append('No', data)
         const config = {
             headers: {
-            'content-type': 'multipart/form-data'
+                'content-type': 'multipart/form-data'
             }
         }
         alert("등록 되었습니다."); 
-    
         return post(url, formData, config)
-       
-     
     }
     
     return (
@@ -120,11 +116,10 @@ function TodoCreate({data, events }){
          {open && (
              <InsertFormPositioner>
                  <InsrtForm>
-                    <Input placeholder="등록해주세요" value={drug} onChange={onChange} onkeydown={addCustomer}/>
+                    <Input placeholder="등록해주세요" value={drug} onChange={onChange} />
                      값 확인 : {drug}
-                    { open && (<AddButton onClick={addCustomer}> 등록하기 </AddButton>)}
+                    { open && (<AddButton onClick={addDrug}> 등록하기 </AddButton>)}
                  </InsrtForm>
-                 {/* <AddButton onClick={addCustomer()}> 등록하기 </AddButton>  */}
              </InsertFormPositioner>
          )}
         <CircleButton onClick={onToggle} open={open}>

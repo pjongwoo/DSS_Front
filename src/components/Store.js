@@ -5,10 +5,9 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-import Select from 'react-select';
 import { withStyles } from '@material-ui/core/styles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import StoreAd from './StoreAd'
+import  store  from '../img/store.jpg';
 
 const styles = theme => ({
     icon: {
@@ -26,61 +25,42 @@ const styles = theme => ({
       paddingTop: theme.spacing(8),
       paddingBottom: theme.spacing(8),
     },
-    card: {
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
+    GridImgBox : {
+      borderTop:'1px solid #e9e9e9;',
+      width:'100%',
+      background:'#fff',
+      textAlign : 'center',
     },
-    cardMedia: {
-      paddingTop: '56.25%', // 16:9
-    },
-    cardContent: {
-      flexGrow: 1,
-    },
-    
-    footer: {
-      backgroundColor: theme.palette.background.paper,
-      padding: theme.spacing(6),
-    },
-    // New Css Insert
-    newheader :{
-      paddingLeft: '70px',
-    },
-    grow: {
-      flexGrow: 1,
-    },
-    Loginmargin: {
-      marginRight:'7%',
-      color:'#fff',
-      '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.5),
-      },
-    },
-    GridImgBox:{
-      display:'flex',
-      width: '90%',
-      margin: '0 auto',
-
-    }
   });
 
-  const techCompanies = [
-    { label: "서울", value: 1 },
-    { label: "인천", value: 2 },
-    { label: "경기", value: 3 },
-    { label: "부산", value: 4 },
-    { label: "대구", value: 5 },
-    { label: "대전", value: 6 },
-    { label: "세종", value: 7 },
-  ];
+
 class Store extends Component {
-    state ={
-      opens:false,
-    };
+    constructor(props) {
+      super(props);
+      this.state = {
+        StoreName: '',
+        select:'',
+        opens:false,
+    }
+      this.handleValueChange = this.handleValueChange.bind(this)
+      this.handleOptionChange = this.handleOptionChange.bind(this)
+      //this.handleClickOpen = this.handleClickOpen
+   }
+
     handleClickOpen = () => this.setState({ opens: !this.state.opens})
+     //Option 함수
+    handleOptionChange(e) {
+      this.setState({select: e.target.value});
+    }
+    //input 함수 
+    handleValueChange(e) {
+      this.setState({StoreName : e.target.value}) 
+    }
+
     render() {
         const { classes } = this.props;
         const  StoreAdShow  = this.state.opens
+
         return (
             <div>
                 {/* Hero unit */}
@@ -91,29 +71,52 @@ class Store extends Component {
                     <Container maxWidth="sm">
                     <div>
                       <InputGroup className="mb-4">
-                    <div className="col-md-3">
-                      <Select options={ techCompanies } />
-                    </div>
-                    <FormControl aria-describedby="basic-addon1" />
+                      <select name="select" value={this.state.select }onChange={this.handleOptionChange}  className="browser-default custom-select col-md-3">
+                      <option> option</option>
+                        <option value="서울">서울 </option>
+                        <option value="인천">인천 </option>
+                        <option value="경기">경기 </option>
+                        <option value="부산">부산 </option>
+                        <option value="대구">대구 </option>
+                        <option value="대전">대전 </option>
+                        <option value="세종">세종 </option>
+                     </select>
+
+                     {StoreAdShow ?
+                       <FormControl 
+                          aria-describedby="basic-addon1" 
+                          name="StoreName" 
+                          value={this.state.StoreName} 
+                          readOnly
+                        />
+                       : <FormControl
+                            aria-describedby="basic-addon1" 
+                            name="StoreName" 
+                            value={this.state.StoreName} 
+                            onChange={this.handleValueChange} 
+                        />} 
+              
                      </InputGroup>
                     </div>
                     <div className={classes.heroButtons}>
                     <Grid container spacing={2} justify="center">
                         <Grid item>
                         <Button variant="contained" color="primary" onClick={this.handleClickOpen}> 
-                            Search
+                            {StoreAdShow ? "재 검색하기"  : " 검색하기"}
                         </Button>
                         </Grid>
                     </Grid>
                     </div>
                     </Container>
                 </div>
-                {StoreAdShow ? <StoreAd/> : ""}
-             
+                {StoreAdShow ? <StoreAd select={this.state.select} StoreName={this.state.StoreName}/> : ""}
+                <div className={classes.GridImgBox} >
+                   <img src={ store } alt="img" style={ {width:"80%" , marginTop:'5%'}}/>
+                 </div>
             </div>
         );
     }
-}
+} 
 
 
 export default withStyles(styles)(Store);

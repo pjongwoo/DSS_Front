@@ -10,7 +10,6 @@ const TodoListBlock = styled.div`
     background: #fff;
 `;
 
-
 class TodoList extends Component {
     
     _renderMovies = () => {
@@ -27,10 +26,11 @@ class TodoList extends Component {
         return movies;
     }
     render() {
+        //data : false 값 처리 대기중.
         const  data  = this.props.data
         return (
             <TodoListBlock> 
-              {data ? this._renderMovies() : ""}
+              {data ? this._renderMovies() : "등록된 리스트가 없습니다."}
           </TodoListBlock>
         );
     }

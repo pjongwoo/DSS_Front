@@ -16,20 +16,16 @@ const styles = theme => ({
     heroContent: {
       backgroundColor: theme.palette.background.paper,
       padding: theme.spacing(10, 0, 6),
-      
     },
-   
     GridImgBox : {
       borderTop:'1px solid #e9e9e9;',
       width:'100%',
       background:'#fff',
       textAlign : 'center',
-    
     },
     heroButtons: {
       marginTop: theme.spacing(4),
     }
-    
  });
 
 
@@ -44,7 +40,6 @@ class DrugMain extends Component {
     }
     this.handleValueChange = this.handleValueChange.bind(this)
     this.handleOptionChange = this.handleOptionChange.bind(this)
-    //this.handleClickOpen = this.handleClickOpen
   }
 
   //Option 함수
@@ -66,7 +61,7 @@ class DrugMain extends Component {
   render() {
         const { classes } = this.props;
         const  DrugAdShow  = this.state.opens;
-      
+        
         return (
           <div>
             {/* Hero unit */}
@@ -77,14 +72,18 @@ class DrugMain extends Component {
               <Container maxWidth="sm">
                 <div>
                     <InputGroup className="mb-4">
-                    <select name="select" value={this.state.select }onChange={this.handleOptionChange}  className="browser-default custom-select">
-                      <option>Choose your option</option>
-                      <option value="1">약 ID검색 </option>
-                      <option value="2">약 이름 검색 </option>
-                     </select>
-                    {/* <div className="col-md-3">
-                        <Select options={ techCompanies } />
-                      </div> */}
+                      <select name="select" value={this.state.select }onChange={this.handleOptionChange}  className="browser-default custom-select col-md-4"> 
+                        <option> option</option>
+                        <option  value="1">약 ID검색 </option>
+                        <option  value="2">약 이름 검색 </option>
+                      </select>
+
+                      {/* <select name="select" value={this.state.select }onChange={this.handleOptionChange}  className="browser-default custom-select col-md-4" style={{    background: '#e9e9e9'}}> 
+                        <option> option</option>
+                        <option disabled="readOnly" value="1">약 ID검색 </option>
+                        <option disabled="readOnly" value="2">약 이름 검색 </option>
+                      </select> */}
+
                       {DrugAdShow ?
                        <FormControl 
                           aria-describedby="basic-addon1" 
@@ -103,10 +102,11 @@ class DrugMain extends Component {
                 <div className={classes.heroButtons}>
                   <Grid container spacing={2} justify="center">
                     <Grid item>
-                      <Button variant="contained" color="primary" onClick={this.handleClickOpen}> 
-                      {DrugAdShow ? "재 검색하기"  : " 검색하기"}
-                         
-                      </Button>
+                      {DrugAdShow ? 
+                        <Button variant="contained" color="secondary" onClick={this.handleClickOpen}> 재 검색하기 </Button>
+                        : 
+                        <Button variant="contained" color="primary" onClick={this.handleClickOpen}> 검색하기 </Button>
+                      }
                     </Grid>
                   </Grid>
                 </div>

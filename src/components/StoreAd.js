@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/core/styles';
-import  store  from '../img/store.jpg';
 import StoreCard from './StoreCard';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = theme => ({
   roots: {
@@ -18,18 +18,30 @@ const styles = theme => ({
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
   },
-
-  GridImgBox : {
-    width:'100%',
-    padding:'1rem',
+  progress: {
+    //display:'flex',
+    margin: theme.spacing.unit * 2,
+   
   },
-  
 });
 
 class StoreAd extends Component {
-  state ={};
+  state ={
+    completed: 0,
+  };
+
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  progress = () => {
+    const { completed } = this.state;
+    this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
+};
 
   componentDidMount() {
+    this.timer = setInterval(this.progress, 20);
     this._getMovies();
   }
 
@@ -41,14 +53,17 @@ class StoreAd extends Component {
   };
 
   _callApi =() => {
+    const select = this.props.select;
+    const StoreName = this.props.StoreName;
+    console.log("Select Value : " + select )
+    console.log("StoreName Value : " + StoreName)
     return fetch(
-        "http://211.239.124.237:19613/store/address/%EC%9D%B8%EC%B2%9C/%EA%B0%95%ED%99%94%EA%B5%B0"
+        "http://211.239.124.237:19613/store/address/"+select+"/"+StoreName
       )
       .then(Response =>Response.json())
       .then(json => json)
       .catch(err =>console.log(err));
   }
-
   _renderMovies = () => {
     const movies = this.state.movies.map((Store) => {
       return (
@@ -70,19 +85,16 @@ class StoreAd extends Component {
         const { movies } = this.state;
         return (
             <div className={classes.roots}>
-              <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom style={{marginTop:'3%'}}>
-                  Search Results
-              </Typography>
-              <Container className={classes.cardGrid} maxWidth="md">
-              {/* End hero unit */}
-              <Grid container spacing={1} >
-               {movies ? this._renderMovies() : ""}
-                 <div className={classes.GridImgBox} >
-                   <img src={ store } alt="img" style={ {width:"100%"}}/>
-                 </div>
-              </Grid>
-              </Container>
-            </div>
+            <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom style={{marginTop:'3%'}}>
+                Search Results
+            </Typography>
+            <Container className={classes.cardGrid} maxWidth="md">
+            {/* End hero unit */}
+            <Grid container spacing={1} style={{display:'flex', justifyContent:'center'}}>
+              {movies ? this._renderMovies() :   <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed} />}
+            </Grid>
+            </Container>
+          </div>
         );
     }
 }

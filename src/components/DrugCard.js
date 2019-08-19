@@ -35,9 +35,9 @@ const styles = theme => ({
       padding: theme.spacing(6),
     },
 
-  });
+    
 
- 
+  });
 
 class DrugCard extends Component {
     constructor(props) {
@@ -65,9 +65,14 @@ class DrugCard extends Component {
         /* NAME 추출 */
         const jbSplitName = movies.name.split('(');
         const NewName= jbSplitName[0];
-    
+      
+        /*Drug Card CSS 대기중. */
+        let check = this.props.check;
+
         return (
-                  <Grid item key={movies.id} xs={12} sm={6} md={4}>
+          <React.Fragment>
+              {check ?  
+                  <Grid item key={movies.id}  xs={12}>
                     <DrugDetial 
                       opens={this.state.opens} 
                       send={this.handleSendClose} 
@@ -103,7 +108,47 @@ class DrugCard extends Component {
                         <Button size="small" color="primary" onClick={this.handleClickOpen} >detail</Button>
                       </CardActions>
                     </Card>
-                  </Grid>
+                  </Grid> 
+                  :
+                  <Grid item key={movies.id}  xs={12} sm={6} md={4}>
+                  <DrugDetial 
+                    opens={this.state.opens} 
+                    send={this.handleSendClose} 
+                    ingredient_detail={movies.ingredient_detail} /*성분 */
+                    validity={movies.validity} /*유통기한 */
+                    company_name={movies.company_name} /*제조 회사 */
+                    usage={movies.usage} /*약 복용법 */
+                    div_name={movies.div_name}/*약 효능 */
+                    big_image={movies.big_image} /*약 이미지  */
+                  />
+                  <Card className={classes.card}>
+                    <CardMedia
+                      className={classes.cardMedia}
+                      image={img}
+                      title={img}
+                    />
+                    <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                       약 이름 : {NewName}
+                    </Typography>
+                    <Typography>
+                      제조 회사 : {movies.company_name}
+                    </Typography>
+                    <LinesEllipsis
+                         text={movies.manufacturing}
+                          maxLine='2'
+                          ellipsis='...'
+                          trimRight
+                          basedOn='letters'
+                    />  
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small" color="primary" onClick={this.handleClickOpen} >detail</Button>
+                    </CardActions>
+                  </Card>
+                </Grid>  }
+                 
+          </React.Fragment>
           
         );
     }

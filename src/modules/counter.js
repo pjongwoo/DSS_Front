@@ -1,6 +1,4 @@
-import { createAction } from 'redux-actions';
 // 액션 타입 정의
-
 const INCREMENT = 'counter/INCREMENT';
 const DECREMENT = 'counter/DECREMENT';
 
@@ -8,13 +6,20 @@ const DECREMENT = 'counter/DECREMENT';
 
 // export const changeColor = color => ({ type: CHANGE_COLOR, color });
 
-export const increment = createAction(INCREMENT, id => id );
+export const increment = data => ({ 
+  type: INCREMENT ,
+  data
+});
+
+// export const increment = createAction(INCREMENT, data => data );
 export const decrement = () => ({ type: DECREMENT });
 
 // **** 초기상태 정의
 const initialState = {
-    id : '',
+    No : '',
+    Name : '',
     Loginstates: false,
+
   };
 
 // **** 리듀서 작성
@@ -22,7 +27,8 @@ export default function counter(state = initialState, action) {
     switch (action.type) {
       case INCREMENT:
         return {
-          pro_basic : action.payload,
+          No : action.data.id,
+          Name : action.data.name,
           Loginstates : true,
         };
       case DECREMENT:
@@ -33,4 +39,4 @@ export default function counter(state = initialState, action) {
       default:
         return state;
     }
-  }
+}

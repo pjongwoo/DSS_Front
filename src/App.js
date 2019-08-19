@@ -27,7 +27,6 @@ import './App.css';
 
 
 const Loginmargin = {
-  marginRight:'2%',
   color:'#fff',
 }
 const grow = {
@@ -37,10 +36,6 @@ const footer={
   padding: '48px',
   backgroundColor: '#fff',
 } 
-
-const newheader ={
-  paddingLeft: '70px',
-}
 
 const icon ={
   marginRight : '1rem',
@@ -59,46 +54,33 @@ class App extends Component {
   /* handle 함수  */
   handleDrawerToggle = () => this.setState({toggle: !this.state.toggle})
   handleClickOpen = () => this.setState({ opens: !this.state.opens})
-  handleSendClose = (data) => {
-    this.setState({
-      opens : data
-    })
-  }
+  handleSendClose = (data) => {this.setState({opens : data})}
 
   render() {
-    const   Loginstates   = this.props.Loginstates;
-    const   pro_basic   = this.props.pro_basic;
-    console.log (Loginstates);
-    console.log(pro_basic);
+    const  Loginstates   = this.props.Loginstates;
       return (
         <Router>
           {/* App Bar */} 
           <CssBaseline />
             <AppBar position="relative">
-              <Toolbar style={newheader}>
+              <Toolbar>
                 <MenuIcon  style={icon} onClick={this.handleDrawerToggle}/>
                 <Typography variant="h5" color="inherit" noWrap>DSS</Typography>
                 <div style={grow} />
                 <SearchIcon />
+                {/*로그인 여부 체크 */}
                 {Loginstates ?
-                 
-                //  <Button  size="large" style={Loginmargin} onClick={this.handleClickOpen} >
-                //    <Typography variant="subtitle1" noWrap>MyPage</Typography>
-                //  </Button>
                 <Button  size="large"   style={Loginmargin} >
-                <NavLink to="/Mypage" className="item" activeClassName="active">
+                 <NavLink to="/Mypage" className="item" activeClassName="active">
                   <Typography variant="subtitle1" noWrap style={{color:'#fff'}}>mypage</Typography>
                  </NavLink>
-             </Button>
+                </Button>
                 :
                 <Button  size="large"   style={Loginmargin} >
-                   <NavLink to="/Login" className="item" activeClassName="active">
-                     <Typography variant="subtitle1" noWrap style={{color:'#fff'}}>Login</Typography>
-                    </NavLink>
+                 <NavLink to="/Login" className="item" activeClassName="active">
+                  <Typography variant="subtitle1" noWrap style={{color:'#fff'}}>Login</Typography>
+                  </NavLink>
                 </Button>
-                // <Button size="large" style={Loginmargin} onClick={this.handleClickOpen} >
-                //   <Typography variant="subtitle1" noWrap>Login</Typography>
-                // </Button>
                 }
               </Toolbar>
             </AppBar>
@@ -118,10 +100,9 @@ class App extends Component {
                   </ListItem>
               </List>
             </Drawer>
-            
             {/*Main Content */}
              <div>
-                {/*<Login  /> */}  
+                {/* 소셜 로그인 테스트 중 <Login  /> */}  
                 <ModaLogin opens={this.state.opens} send={this.handleSendClose}/>             
                 {/* Route Link 생성*/}
                 <Switch> 
@@ -132,7 +113,6 @@ class App extends Component {
                    <Route path="/Mypage" component={Mypage}/>  {/* 약국 검색*/}        
                 </Switch>
             </div>
-
             {/* Footer */}
             <footer style={footer}>
               <Typography variant="h6" align="center" gutterBottom>
@@ -144,20 +124,18 @@ class App extends Component {
               <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
                 11, Gimpohangang 9-ro, Gimpo-si, Gyeonggi-do, Republic of Korea TEL : 02-123-1234  E-MAIL : help@Dss.com
               </Typography>
-        
             </footer>
             {/* End footer */}
-          </Router>
-      
+          </Router> 
     );
   }
 }
-// props 로 넣어줄 스토어 상태값
+// props 로 넣어줄 스토어 상태값 
+// Loginstates : 로그인 상태 값 (boolean)
+
 const mapStateToProps = state => ({
   Loginstates: state.counter.Loginstates,
-  pro_basic: state.counter.pro_basic,
 });
-
 
 export default connect(
   mapStateToProps,
