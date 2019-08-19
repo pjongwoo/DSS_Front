@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import DurgIcon from '@material-ui/icons/Link';
@@ -7,7 +6,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import SearchIcon from '@material-ui/icons/Search';
 import Place from '@material-ui/icons/Place';
 import Drawer from '@material-ui/core/Drawer';
@@ -21,47 +19,41 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import ModaLogin from './components/modalLogin'
 import StoreParm from './components/StoreParm'
+import UserLogin from './components/UserLogin'
+import Cookies from 'universal-cookie';
+import { connect } from 'react-redux';
+import Mypage from './components/UserMypage'
+import './App.css';
 
-/* SASS */
-const styles = theme => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-  // New Css Insert
-  newheader :{
-    paddingLeft: '70px',
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  Loginmargin: {
-    marginRight:'7%',
-    color:'#fff',
-    '&:hover': {
-    backgroundColor: fade(theme.palette.common.white, 0.5),
-    },
-  },
-  GridImgBox:{
-    display:'flex'
-  },
-  NavLink: {
-    color:'#333',
-    fontweight: 'bold',
-    textdecoration:'none',
-  }
-});
+
+const Loginmargin = {
+  marginRight:'2%',
+  color:'#fff',
+}
+const grow = {
+  flexGrow: 1,
+}
+const footer={
+  padding: '48px',
+  backgroundColor: '#fff',
+} 
+
+const newheader ={
+  paddingLeft: '70px',
+}
+
+const icon ={
+  marginRight : '1rem',
+}
 
 class App extends Component {
   constructor(props) {
     super(props);
-     
+    const cookies = new Cookies();
      this.state = {
        completed: 0,
        opens : false,
+       LoginState : cookies.get('LoginState'),
      }
    }
   /* handle 함수  */
@@ -74,25 +66,44 @@ class App extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const   Loginstates   = this.props.Loginstates;
+    const   pro_basic   = this.props.pro_basic;
+    console.log (Loginstates);
+    console.log(pro_basic);
       return (
         <Router>
           {/* App Bar */} 
           <CssBaseline />
             <AppBar position="relative">
-              <Toolbar className={classes.newheader}>
-                <MenuIcon  className={classes.icon} onClick={this.handleDrawerToggle}/>
+              <Toolbar style={newheader}>
+                <MenuIcon  style={icon} onClick={this.handleDrawerToggle}/>
                 <Typography variant="h5" color="inherit" noWrap>DSS</Typography>
-                <div className={classes.grow} />
+                <div style={grow} />
                 <SearchIcon />
-                <Button size="large" className={classes.Loginmargin} onClick={this.handleClickOpen} >
-                  <Typography variant="subtitle1" noWrap>Login</Typography>
+                {Loginstates ?
+                 
+                //  <Button  size="large" style={Loginmargin} onClick={this.handleClickOpen} >
+                //    <Typography variant="subtitle1" noWrap>MyPage</Typography>
+                //  </Button>
+                <Button  size="large"   style={Loginmargin} >
+                <NavLink to="/Mypage" className="item" activeClassName="active">
+                  <Typography variant="subtitle1" noWrap style={{color:'#fff'}}>mypage</Typography>
+                 </NavLink>
+             </Button>
+                :
+                <Button  size="large"   style={Loginmargin} >
+                   <NavLink to="/Login" className="item" activeClassName="active">
+                     <Typography variant="subtitle1" noWrap style={{color:'#fff'}}>Login</Typography>
+                    </NavLink>
                 </Button>
+                // <Button size="large" style={Loginmargin} onClick={this.handleClickOpen} >
+                //   <Typography variant="subtitle1" noWrap>Login</Typography>
+                // </Button>
+                }
               </Toolbar>
             </AppBar>
             {/* Drawer */}
             <Drawer
-            className={classes.drawer}
             open={this.state.toggle} onClick={this.handleDrawerToggle}
             anchor="left">
             <Divider />
@@ -116,12 +127,14 @@ class App extends Component {
                 <Switch> 
                   <Route exact path="/" component={DrugMain}/>     {/* Main 약검색 */}
                    <Route path="/Store" component={Store}/>  {/* 약국 검색*/}   
-                   <Route path="/StoreParm" component={StoreParm}/>  {/* 약국 검색*/}          
+                   <Route path="/StoreParm" component={StoreParm}/>  {/* 약국 검색*/}     
+                   <Route path="/Login" component={UserLogin}/>  {/* 약국 검색*/}        
+                   <Route path="/Mypage" component={Mypage}/>  {/* 약국 검색*/}        
                 </Switch>
             </div>
 
             {/* Footer */}
-            <footer className={classes.footer}>
+            <footer style={footer}>
               <Typography variant="h6" align="center" gutterBottom>
                 Footer
               </Typography>
@@ -139,5 +152,13 @@ class App extends Component {
     );
   }
 }
+// props 로 넣어줄 스토어 상태값
+const mapStateToProps = state => ({
+  Loginstates: state.counter.Loginstates,
+  pro_basic: state.counter.pro_basic,
+});
 
-export default withStyles(styles)(App);
+
+export default connect(
+  mapStateToProps,
+)(App);
