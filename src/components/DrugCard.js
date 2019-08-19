@@ -72,7 +72,7 @@ class DrugCard extends Component {
         return (
           <React.Fragment>
               {check ?  
-                  <Grid item key={movies.id}  xs={12}>
+                  <Grid item key={movies.id} xs={12} >
                     <DrugDetial 
                       opens={this.state.opens} 
                       send={this.handleSendClose} 
@@ -85,7 +85,8 @@ class DrugCard extends Component {
                     />
                     <Card className={classes.card}>
                       <CardMedia
-                        className={classes.cardMedia}
+                        // className={classes.cardMedia}
+                        style={{paddingTop:'30.25%'}}
                         image={img}
                         title={img}
                       />

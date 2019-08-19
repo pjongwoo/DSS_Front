@@ -31,6 +31,10 @@ const styles = theme => ({
       background:'#fff',
       textAlign : 'center',
     },
+    Divimg : {
+      width: '50%',
+      marginTop : '3%',
+    },
   });
 
 
@@ -101,9 +105,14 @@ class Store extends Component {
                     <div className={classes.heroButtons}>
                     <Grid container spacing={2} justify="center">
                         <Grid item>
-                        <Button variant="contained" color="primary" onClick={this.handleClickOpen}> 
-                            {StoreAdShow ? "재 검색하기"  : " 검색하기"}
-                        </Button>
+                        {StoreAdShow 
+                          ?       
+                           <Button variant="contained" color="secondary" onClick={this.handleClickOpen}> 재 검색하기 </Button>
+                          :
+                          <Button variant="contained" color="primary" onClick={this.handleClickOpen}> 검색하기 </Button>
+                        }
+                        
+                  
                         </Grid>
                     </Grid>
                     </div>
@@ -111,7 +120,7 @@ class Store extends Component {
                 </div>
                 {StoreAdShow ? <StoreAd select={this.state.select} StoreName={this.state.StoreName}/> : ""}
                 <div className={classes.GridImgBox} >
-                   <img src={ store } alt="img" style={ {width:"80%" , marginTop:'5%'}}/>
+                   <img className={classes.Divimg} src={ store } alt="img" />
                  </div>
             </div>
         );

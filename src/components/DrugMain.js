@@ -18,13 +18,21 @@ const styles = theme => ({
       padding: theme.spacing(10, 0, 6),
     },
     GridImgBox : {
+      // display:'flex',
       borderTop:'1px solid #e9e9e9;',
       width:'100%',
       background:'#fff',
-      textAlign : 'center',
+      alignItems: 'center',
+      textAlign: 'center',
     },
     heroButtons: {
       marginTop: theme.spacing(4),
+    },
+    Divimg : {
+       width: '50%',
+      // flex:'1',
+      marginTop : '3%',
+
     }
  });
 
@@ -72,18 +80,19 @@ class DrugMain extends Component {
               <Container maxWidth="sm">
                 <div>
                     <InputGroup className="mb-4">
-                      <select name="select" value={this.state.select }onChange={this.handleOptionChange}  className="browser-default custom-select col-md-4"> 
-                        <option> option</option>
-                        <option  value="1">약 ID검색 </option>
-                        <option  value="2">약 이름 검색 </option>
-                      </select>
-
-                      {/* <select name="select" value={this.state.select }onChange={this.handleOptionChange}  className="browser-default custom-select col-md-4" style={{    background: '#e9e9e9'}}> 
-                        <option> option</option>
-                        <option disabled="readOnly" value="1">약 ID검색 </option>
-                        <option disabled="readOnly" value="2">약 이름 검색 </option>
-                      </select> */}
-
+                      {DrugAdShow ?
+                        <select name="select" value={this.state.select }onChange={this.handleOptionChange}  className="browser-default custom-select col-md-4" style={{    background: '#e9e9e9'}}> 
+                          <option> option</option>
+                          <option disabled="readOnly" value="1">약 ID검색 </option>
+                          <option disabled="readOnly" value="2">약 이름 검색 </option>
+                        </select> 
+                        : 
+                        <select name="select" value={this.state.select }onChange={this.handleOptionChange}  className="browser-default custom-select col-md-4"> 
+                          <option> option</option>
+                          <option  value="1">약 ID검색 </option>
+                          <option  value="2">약 이름 검색 </option>
+                        </select>
+                      }
                       {DrugAdShow ?
                        <FormControl 
                           aria-describedby="basic-addon1" 
@@ -114,7 +123,7 @@ class DrugMain extends Component {
             </div>
              {DrugAdShow ? <DurgAd select={this.state.select} drugName={this.state.drugName}/> : ""}
              <div className={classes.GridImgBox} >
-                <img src={ pc_main_ba_3 } alt="img" style={ {width:"80%" , marginTop:'5%'}}/>
+                <img className={classes.Divimg} src={ pc_main_ba_3 } alt="img" />
             </div>
           </div>
    

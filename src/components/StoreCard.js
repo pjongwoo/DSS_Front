@@ -7,6 +7,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import Button from '@material-ui/core/Button';
 import  StoreCards  from '../img/StoreCard.jpg';
 import { Link } from 'react-router-dom';
+import LinesEllipsis from 'react-lines-ellipsis'
 
 const styles = theme => ({
 
@@ -70,11 +71,18 @@ class StoreCard extends Component {
                   <Grid item xs container direction="column"  spacing={2}>
                     <Grid item xs>
                       <Typography   gutterBottom variant="subtitle1">
-                        약국명 : {movies.dutyName}
+                        <b> 약국명 : {movies.dutyName} </b>
                       </Typography>
-                      <Typography variant="body2" gutterBottom>
+                      <LinesEllipsis
+                           text= {movies.dutyAddr}
+                            maxLine='2'
+                            ellipsis='...'
+                            trimRight
+                            basedOn='letters'
+                      />  
+                      {/* <Typography variant="body2" gutterBottom>
                         약국 주소 : {movies.dutyAddr}
-                      </Typography>
+                      </Typography> */}
                       <Typography variant="body2" color="textSecondary">
                         전화 번호 : {movies.dutyTel1 }
                       </Typography>

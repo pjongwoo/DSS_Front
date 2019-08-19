@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
 
@@ -9,6 +12,13 @@ const styles = theme => ({
         flexGrow: 1,
         paddong:'1rme',
         width:'100%',
+      },
+      but_div :{
+        display : 'flex',
+        justifyContent : 'center',
+      },
+      button: {
+       // margin: theme.spacing(1),
       },
    
 });
@@ -36,7 +46,21 @@ class StoreMap extends Component {
             Search location 
         </Typography>
           <div className="map" id="map" style={ { width: '90%', height: '500px' ,margin: '0 auto' }}> >  </div>
+         
+          {/* <div className={classes.but_div}>
+            <Button variant="contained" className={classes.button}>Default </Button>
+
+            <Button variant="contained" className={classes.button}>Default </Button>
+          </div> */}
+     
+     <Grid item xs={12} md={6} style={{    margin: '0 auto', marginTop:'2%'}} >
+        <ButtonGroup fullWidth aria-label="full width outlined button group">
+          <Button className={classes.button}>width</Button>
+          <Button className={classes.button}>ButtonGroup</Button>
+        </ButtonGroup>
+      </Grid>
         </div>
+        
       );
     }
   }

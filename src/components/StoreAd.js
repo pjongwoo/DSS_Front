@@ -90,7 +90,7 @@ class StoreAd extends Component {
             </Typography>
             <Container className={classes.cardGrid} maxWidth="md">
             {/* End hero unit */}
-            <Grid container spacing={1} style={{display:'flex', justifyContent:'center'}}>
+            <Grid container spacing={4} style={{display:'flex', justifyContent:'center'}}>
               {movies ? this._renderMovies() :   <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed} />}
             </Grid>
             </Container>
