@@ -35,7 +35,6 @@ const styles = theme => ({
       padding: theme.spacing(6),
     },
 
-    
 
   });
 

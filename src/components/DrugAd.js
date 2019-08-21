@@ -46,7 +46,7 @@ class DrugAd extends Component {
     let url = ""
 
     // select = 1 (ID 검색) select = 2 (약이름 검색)
-    if (select =="1"){
+    if (select ==="1"){
       url ="http://211.239.124.237:19613/drug/findId/200003479"
     }else {
       url = "http://211.239.124.237:19613/drug/findName/" + drugName
@@ -64,7 +64,7 @@ class DrugAd extends Component {
     const { select } = this.props
 
     //단일 형태 
-    if (select =="1"){
+    if (select ==="1"){
       const drug =this.state.movies
       const movies =   
         <DrugCard key={drug.id}      /*약 고유 ID */

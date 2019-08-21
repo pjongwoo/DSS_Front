@@ -7,7 +7,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { withStyles } from '@material-ui/core/styles';
 import StoreAd from './StoreAd'
-import  store  from '../img/store.jpg';
+import  img_3  from '../img/img_3.png';
+import "../css/Store.css";
 
 const styles = theme => ({
     icon: {
@@ -120,7 +121,7 @@ class Store extends Component {
                 </div>
                 {StoreAdShow ? <StoreAd select={this.state.select} StoreName={this.state.StoreName}/> : ""}
                 <div className={classes.GridImgBox} >
-                   <img className={classes.Divimg} src={ store } alt="img" />
+                   <img className="Divimg" src={ img_3 } alt="img" />
                  </div>
             </div>
         );

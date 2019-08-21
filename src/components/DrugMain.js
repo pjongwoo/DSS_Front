@@ -7,7 +7,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { withStyles } from '@material-ui/core/styles';
 import DurgAd from './DrugAd'
-import  pc_main_ba_3  from '../img/pc_main_ba_3.jpg';
+import  img_2  from '../img/img_2.png';
+import "../css/DrugMain.css";
 
 const styles = theme => ({
     icon: {
@@ -28,12 +29,7 @@ const styles = theme => ({
     heroButtons: {
       marginTop: theme.spacing(4),
     },
-    Divimg : {
-       width: '50%',
-      // flex:'1',
-      marginTop : '3%',
-
-    }
+ 
  });
 
 
@@ -123,7 +119,7 @@ class DrugMain extends Component {
             </div>
              {DrugAdShow ? <DurgAd select={this.state.select} drugName={this.state.drugName}/> : ""}
              <div className={classes.GridImgBox} >
-                <img className={classes.Divimg} src={ pc_main_ba_3 } alt="img" />
+                <img className="Divimg" src={ img_2 } alt="img" />
             </div>
           </div>
    

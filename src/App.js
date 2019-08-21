@@ -13,6 +13,8 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import PersonAddDisabled from '@material-ui/icons/PersonAddDisabled'
+import PersonAdd from '@material-ui/icons/PersonAdd'
 import DrugMain from './components/DrugMain';
 import Store from './components/Store';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -23,6 +25,8 @@ import UserLogin from './components/UserLogin'
 import Cookies from 'universal-cookie';
 import { connect } from 'react-redux';
 import Mypage from './components/UserMypage'
+import { decrement } from './modules/counter';
+import UserLogOut from './components/UserLogOut'
 import './App.css';
 
 
@@ -55,6 +59,11 @@ class App extends Component {
   handleDrawerToggle = () => this.setState({toggle: !this.state.toggle})
   handleClickOpen = () => this.setState({ opens: !this.state.opens})
   handleSendClose = (data) => {this.setState({opens : data})}
+  handleLogout = () => {
+    const { decrement } = this.props;
+    decrement();
+    alert("로그아웃 되었습니다.");
+  }
 
   render() {
     const  Loginstates   = this.props.Loginstates;
@@ -77,7 +86,7 @@ class App extends Component {
                 </Button>
                 :
                 <Button  size="large"   style={Loginmargin} >
-                 <NavLink to="/Login" className="item" activeClassName="active">
+                 <NavLink to="/Login" className="item" activeClassName="active" >
                   <Typography variant="subtitle1" noWrap style={{color:'#fff'}}>Login</Typography>
                   </NavLink>
                 </Button>
@@ -89,6 +98,7 @@ class App extends Component {
             open={this.state.toggle} onClick={this.handleDrawerToggle}
             anchor="left">
             <Divider />
+              {Loginstates ?
               <List>
                   <ListItem button key="약 검색">
                   <ListItemIcon> <DurgIcon /></ListItemIcon>
@@ -98,7 +108,27 @@ class App extends Component {
                   <ListItemIcon> <Place /></ListItemIcon>
                       <NavLink to="/Store" className="item" activeClassName="active"> <b style={{color:'#333'}}>약국검색 </b> </NavLink>
                   </ListItem>
+                  <ListItem button key="MyPage">
+                  <ListItemIcon> <PersonAdd /></ListItemIcon>
+                      <NavLink to="/Mypage" className="item" activeClassName="active"> <b style={{color:'#333'}}>MyPage </b> </NavLink>
+                  </ListItem>
+                  <ListItem button key="LogOut">
+                  <ListItemIcon> <PersonAddDisabled /></ListItemIcon>
+                      <NavLink to="/LogOut" className="item" activeClassName="active" onClick={this.handleLogout}> <b style={{color:'#333'}}>LogOut </b> </NavLink>
+                  </ListItem>
               </List>
+              :
+              <List>
+                <ListItem button key="약 검색">
+                <ListItemIcon> <DurgIcon /></ListItemIcon>
+                  <NavLink to="/" className="item" activeClassName="active"> <b style={{color:'#333'}}> 약 검색 </b></NavLink>
+                </ListItem>
+                <ListItem button key="약국 검색">
+                <ListItemIcon> <Place /></ListItemIcon>
+                    <NavLink to="/Store" className="item" activeClassName="active"> <b style={{color:'#333'}}>약국검색 </b> </NavLink>
+                </ListItem>
+              </List>
+              }
             </Drawer>
             {/*Main Content */}
              <div>
@@ -110,7 +140,8 @@ class App extends Component {
                    <Route path="/Store" component={Store}/>  {/* 약국 검색*/}   
                    <Route path="/StoreParm" component={StoreParm}/>  {/* 약국 검색*/}     
                    <Route path="/Login" component={UserLogin}/>  {/* 약국 검색*/}        
-                   <Route path="/Mypage" component={Mypage}/>  {/* 약국 검색*/}        
+                   <Route path="/Mypage" component={Mypage}/>  {/* MyPage */}      
+                   <Route path="/LogOut" component={UserLogOut}/>  {/* LogOut */}        
                 </Switch>
             </div>
             {/* Footer */}
@@ -137,6 +168,15 @@ const mapStateToProps = state => ({
   Loginstates: state.counter.Loginstates,
 });
 
+  // props 로 넣어줄 액션 생성함수
+  const mapDispatchToProps = dispatch => ({
+    decrement: (data) => dispatch(decrement(data)),
+  });
+
 export default connect(
   mapStateToProps,
+  mapDispatchToProps
 )(App);
+
+
+

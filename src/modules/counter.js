@@ -34,7 +34,7 @@ export default function counter(state = initialState, action) {
       case DECREMENT:
         return {
           ...state,
-          number: state.number - 1,
+          Loginstates : false,
         };
       default:
         return state;
