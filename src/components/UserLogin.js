@@ -94,10 +94,20 @@ class UserLogin extends Component {
                      
                     </FormGroup>
                     <Button
-                        block   
+                         size="lg" 
+                         block
                         onClick={this.submitButton}
                         type="submit">
                         Login
+                    </Button>
+
+                    <Button
+                       size="lg" 
+                       block
+                       variant="secondary"
+                        onClick={this.submitButton}
+                        type="submit">
+                        Sinup
                     </Button>
                 </form>
                 { Loginstates ?<Redirect to="/"/>  : "" }

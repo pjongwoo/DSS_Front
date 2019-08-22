@@ -33,7 +33,7 @@ export default function TransitionsModal() {
   return (
     <div>
       <b onClick={handleOpen}>
-        react-transition-group
+        평가하기
       </b>
       <Modal
         aria-labelledby="transition-modal-title"
