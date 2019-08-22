@@ -27,7 +27,7 @@ export default function counter(state = initialState, action) {
     switch (action.type) {
       case INCREMENT:
         return {
-          No : action.data.id,
+          No : action.data.user_no,
           Name : action.data.name,
           Loginstates : true,
         };

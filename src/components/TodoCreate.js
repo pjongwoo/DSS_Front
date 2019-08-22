@@ -102,9 +102,10 @@ function TodoCreate({data, events }){
         formData.append('drug', drug)
         formData.append('flag', false)
         formData.append('No', data)
+        console.log(drug);
         const config = {
             headers: {
-                'content-type': 'multipart/form-data'
+                'Content-Type': 'application/json',
             }
         }
         alert("등록 되었습니다."); 

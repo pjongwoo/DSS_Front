@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Grid from '@material-ui/core/Grid';
+import Storeevaluation from './Storeevaluation'
 
 const styles = theme => ({
 
@@ -24,6 +25,12 @@ const styles = theme => ({
 });
 
 class StoreMap extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        open : false,
+      }
+    }
     componentDidMount() {
       const vals = this.props.plase
       console.log(vals.left)
@@ -37,30 +44,47 @@ class StoreMap extends Component {
         position: new daum.maps.LatLng(vals.right, vals.left)
       });
     }
+
+    evaluation = () =>{
+      alert("평가하기");
+    }
+
+    makingPhoneCalls = () =>{
+      alert("전화하기");
+    }
+
+    handleClickOpen = () => this.setState({ open: !this.state.open})
+    handleSendClose = (data) => {this.setState({open : data})}
+
     render() {
     const { classes } = this.props;
       return (
        
         <div className={classes.roots}>
            <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom style={{marginTop:'3%'}}>
-            Search location 
-        </Typography>
-          <div className="map" id="map" style={ { width: '90%', height: '500px' ,margin: '0 auto' }}> >  </div>
+              Search location 
+           </Typography>
+        
+          <div className="map" id="map" style={ { width: '90%', height: '500px' ,margin: '0 auto' }}>   </div>
          
           {/* <div className={classes.but_div}>
             <Button variant="contained" className={classes.button}>Default </Button>
 
             <Button variant="contained" className={classes.button}>Default </Button>
           </div> */}
-     
-     <Grid item xs={12} md={6} style={{    margin: '0 auto', marginTop:'2%'}} >
-        <ButtonGroup fullWidth aria-label="full width outlined button group">
-          <Button className={classes.button}>width</Button>
-          <Button className={classes.button}>ButtonGroup</Button>
-        </ButtonGroup>
-      </Grid>
-        </div>
-        
+          
+         <Grid item xs={12} md={6} style={{    margin: '0 auto', marginTop:'2%'}} >
+            <ButtonGroup fullWidth aria-label="full width outlined button group">
+            <Button className={classes.button} >   
+              
+              <Storeevaluation />
+              
+              </Button>
+          
+              <Button className={classes.button} onClick={this.makingPhoneCalls}>전화하기</Button>
+            </ButtonGroup>
+        </Grid>
+       </div>
       );
     }
   }

@@ -8,6 +8,8 @@ import { Button, FormGroup, FormControl } from "react-bootstrap";
 import { post } from 'axios';
 import "../css/Login.css";
 
+
+
 class UserLogin extends Component {
     state={};
 
@@ -28,28 +30,37 @@ class UserLogin extends Component {
         e.preventDefault()
         const email = this.state.email;
         const password = this.state.password;
-
+        
+        console.log("email" + email);
+        console.log("password" + password);
+        
         //Login API 호출 
         this.LoginApi()
         .then((response) => {
             //Return 값 확인
             console.log(response.data);
-            if (response.data.id > 0)
+            if (response.data.user_no > 0)
             {
                 //dispatch 함수 호출
                 const { increment } = this.props;
                 increment(response.data);
             }else{
                 alert("ID/PW 확인 부탁드립니다.");
+                this.setState({
+                    email: '',
+                    password :'',
+
+                });  
             }
         })    
     }
 
     /* API 호출 */
     LoginApi(){
-        const url = 'http://localhost:8080/user/namefind/';
+        const url = 'http://localhost:8080/dssuser/userCheck/';
         const formData = new FormData();
-        formData.append('name', this.state.email)
+        formData.append('email', this.state.email)
+        formData.append('pwd', this.state.password)
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -73,11 +84,14 @@ class UserLogin extends Component {
                     </FormGroup>
                     <FormGroup controlId="password" >
                         <Typography variant="subtitle1" noWrap>Password</Typography>
+                        
                         <FormControl
                         value={this.state.password}
                         onChange={this.handleValueChange}
                         name="password"
-                        />
+                        type="password"
+                        /> 
+                     
                     </FormGroup>
                     <Button
                         block   
