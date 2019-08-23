@@ -7,7 +7,10 @@ import { increment } from '../modules/counter';
 import { Button, FormGroup, FormControl } from "react-bootstrap";
 import { post } from 'axios';
 import "../css/Login.css";
-
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Avatar from '@material-ui/core/Avatar';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
 
 
 class UserLogin extends Component {
@@ -72,6 +75,12 @@ class UserLogin extends Component {
         const   Loginstates   = this.props.Loginstates;
         return (
             <div className="Login">
+                 <Avatar>
+                    <LockOutlinedIcon />
+                 </Avatar>
+                <Typography component="h1" variant="h5">
+                    Sign in
+                </Typography>
                 <form onSubmit={this.handleSubmit}>
                     <FormGroup controlId="email">
                         <Typography variant="subtitle1" noWrap>Email</Typography>
@@ -101,14 +110,19 @@ class UserLogin extends Component {
                         Login
                     </Button>
 
-                    <Button
+                    {/* <Button
                        size="lg" 
                        block
                        variant="secondary"
                         onClick={this.submitButton}
                         type="submit">
                         Sinup
-                    </Button>
+                    </Button> */}
+                         <Grid item>
+              <Link href="#" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
                 </form>
                 { Loginstates ?<Redirect to="/"/>  : "" }
             </div>
