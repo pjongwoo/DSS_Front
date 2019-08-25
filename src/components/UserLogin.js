@@ -75,10 +75,10 @@ class UserLogin extends Component {
         const   Loginstates   = this.props.Loginstates;
         return (
             <div className="Login">
-                 <Avatar>
+                 <Avatar style={{    margin: '0 auto' , background :'#f50057'}}>
                     <LockOutlinedIcon />
                  </Avatar>
-                <Typography component="h1" variant="h5">
+                <Typography component="h1" variant="h5" style={{    padding: '1rem'}}>
                     Sign in
                 </Typography>
                 <form onSubmit={this.handleSubmit}>
@@ -118,11 +118,11 @@ class UserLogin extends Component {
                         type="submit">
                         Sinup
                     </Button> */}
-                         <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
+                    <Grid item className="SingUp">
+                        <Link href="Register" className="SingUpLink" style={{  marginLeft: 'auto'  }} >
+                            {"Don't have an account? Sign Up"}
+                        </Link>
+                    </Grid>
                 </form>
                 { Loginstates ?<Redirect to="/"/>  : "" }
             </div>

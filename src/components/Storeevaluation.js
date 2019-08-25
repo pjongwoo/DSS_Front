@@ -3,6 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import Rating from '@material-ui/lab/Rating';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import { SnackbarProvider, useSnackbar } from 'notistack';
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -18,9 +22,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function TransitionsModal() {
+ function TransitionsModal() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState(2);
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleClick = () => {
+    enqueueSnackbar('참여해주셔서 감사합니다.');
+  };
+
+ 
 
   const handleOpen = () => {
     setOpen(true);
@@ -49,11 +62,31 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">react-transiton-group animates me.</p>
+            <h2 id="transition-modal-title">Store Grade</h2>
+            <Box component="fieldset" mb={3} borderColor="transparent" >
+              <Rating
+                style={{left:'20px'}}
+                name="simple-controlled"
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                  handleClick();
+                }}
+                // onClick={handleClick}
+              />
+           </Box>
           </div>
         </Fade>
       </Modal>
+
     </div>
+  );
+}
+
+export default function IntegrationNotistack() {
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <TransitionsModal />
+    </SnackbarProvider>
   );
 }

@@ -27,6 +27,7 @@ import { connect } from 'react-redux';
 import Mypage from './components/UserMypage'
 import { decrement } from './modules/counter';
 import UserLogOut from './components/UserLogOut'
+import Register from './components/auth/AddressForm'
 import './App.css';
 
 
@@ -142,6 +143,7 @@ class App extends Component {
                    <Route path="/Login" component={UserLogin}/>  {/* 약국 검색*/}        
                    <Route path="/Mypage" component={Mypage}/>  {/* MyPage */}      
                    <Route path="/LogOut" component={UserLogOut}/>  {/* LogOut */}        
+                   <Route path="/Register" component={Register}/>  {/* LogOut */}   
                 </Switch>
             </div>
             {/* Footer */}

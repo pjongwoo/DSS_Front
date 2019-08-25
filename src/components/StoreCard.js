@@ -55,7 +55,7 @@ class StoreCard extends Component {
     render() {
         const { classes } = this.props;
         const movies = this.props;
-        const url = "/StoreParm?left="+ movies.wgs84Lon +"&right=" + movies.wgs84Lat;
+        const url = "/StoreParm?left="+ movies.wgs84Lon +"&right=" + movies.wgs84Lat + "&dutyName=" + movies.dutyName + "&dutyTel1=" + movies.dutyTel1;
 
         return (
    
