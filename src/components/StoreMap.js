@@ -45,6 +45,8 @@ class StoreMap extends Component {
         position: new daum.maps.LatLng(vals.right, vals.left),
         clickable: true 
       });
+
+      
     
       const iwContent = ' <div style="width: 100%; margin: auto 0;"> <div style="padding:25px;">  <b>   ' + vals.dutyName +
       ' </b>  </br>  ' + vals.dutyTel1 + '</div> </div>',
