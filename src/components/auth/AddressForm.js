@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import { Redirect } from 'react-router-dom';
 import { Button, Form } from "react-bootstrap";
 import { post } from 'axios';
+import "../../css/AddressForm.css";
 
 export default function AddressForm() {
     const [Email,setEmail] = useState('');
@@ -34,39 +35,42 @@ export default function AddressForm() {
         setJob(e.target.value);
     };
 
-
     const onSubmit = (e) => {
         e.preventDefault();
-        // setopen(true);
+         setopen(true);
         //  console.log(open);
-        // const url = 'http://localhost:8080/dssuser/';
-        // const formData = new FormData();
-        // formData.append('Email', Email)
-        // formData.append('Password', Password)
-        // formData.append('Name', Name)
-        // formData.append('Gender', Gender)
-        // formData.append('Job', Job)
+         const url = 'http://localhost:8080/dssuser/';
+         const formData = new FormData();
+         formData.append('Email', Email)
+         formData.append('Password', Password)
+         formData.append('Name', Name)
+         formData.append('Gender', Gender)
+         formData.append('Job', Job)
        
-        // const config = {
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     }
-        // }
-        // alert("회원가입 완료 되었습니다."); 
-        // return post(url, formData, config)
+         const config = {
+             headers: {
+                 'Content-Type': 'application/json',
+             }
+         }
+         alert("회원가입 완료 되었습니다."); 
+         return post(url, formData, config)
  
-        
     };
 
 
   return (
     <React.Fragment>  
-          {/* { open ?<Redirect to="/"/>  : "" }       */}
+     { open ?<Redirect to="/"/>  : "" }     
     <Form onSubmit={onSubmit} style={{padding:'4rem'}}>
-
-      <Typography variant="h3">
-        Dss Join Page
+    <Typography variant="h5" style={{marginBottom:'1rem', fontWeight:'bold'}}>
+       회원가입
       </Typography>
+      <div className="join_title"> 
+        <div> 
+          <strong style={{fontSize:'1.3rem'}}> DSS </strong> <span> 회원가입을</span> 환영합니다.
+        </div>
+        <p>회원가입은 무료입니다. 다양한 정보와 서비스를 이용하세요. </p>
+      </div>
       <Grid container spacing={3}>
    
         <Grid item xs={12}>
@@ -88,7 +92,6 @@ export default function AddressForm() {
             fullWidth
             autoComplete="Password"
             onChange={onChangePassword}
-            
           />
         </Grid>
         <Grid item xs={12}>
@@ -142,10 +145,9 @@ export default function AddressForm() {
           />
         </Grid>
         <Grid item xs={12} style={{textAlign: 'center'}}>
-     
-             <Button variant="primary" type="submit" size="lg" >
-                    Submit
-                </Button>
+          <Button variant="primary" type="submit"  style={{position: 'relative', marginTop:'2%' }}>
+            Submit
+          </Button>
         </Grid>
       </Grid>
     </Form>

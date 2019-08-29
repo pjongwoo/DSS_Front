@@ -1,16 +1,121 @@
 
-
 @media screen and (min-width: 769px) {
-    .Divimg {
-        width: 50%;
-        margin-top:3%;
+    .Divimgs {
+        width: 80%;
+    }
+    .MuiGrid-spacing-xs-4 > .MuiGrid-item{
+      padding: 0;
+    }
+    .DrugCard{
+      padding: 2% 15% 2% 15%;
+    }
+     
+   .title{
+      position: relative;
+      z-index: 20;
+      font-size: 3rem;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: 0em;
+      margin-bottom: 3rem;
+    }
+    .tip{
+      margin: 3% 0 1.5% 0;
+      position: relative;
+      right: 16%;
+      font-size: 1.5rem;
+      font-weight: bold;
     }
  }
   
  @media screen and (max-width: 768px) {
-    .Divimg {
-        width: 80%;
-        margin-top:3%;
+    .Divimgs {
+        width: 100%; 
+    }
+    .MuiGrid-spacing-xs-4 > .MuiGrid-item{
+      padding:0;
+    }
+    .DrugCard {
+      padding: 2%;
+    }
+    .title{
+      position: relative;
+      z-index: 20;
+      font-size: 24px;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: 0em;
+      margin-bottom: 3rem;
+    }
+    .tip{
+      margin: 5% 0 1.5% 0;
+      position: relative;
+       font-size: 1.5rem;
+      font-weight: bold;
     }
 }
+.slide-container {
+    width: 70%;
+    margin: auto; 
+    background: #fff;
+  }
+  
+  .each-slide > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    height: 300px;
+  }
+  
+  .each-slide span {
+    padding: 20px;
+    font-size: 20px;
+    background: #efefef;
+    text-align: center;
+  }
+  
+  .each-fade {
+    display: flex;
+  }
+  
+  .each-fade .image-container {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .each-fade .image-container img {
+    width: 100%;
+  }
+  
+  .each-fade h2 {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background: #adceed;
+  }
+ .tip:after {
+    position: absolute;
+    content: "";
+    top: 100%;
+    height: 3px;
+    width: 17%;
+    left: 0;
+    margin-left: auto;
+    background: #3f51b5;
+ }
+  .dimmed {
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index:1;
+ }
 

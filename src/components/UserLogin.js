@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Cookies from 'universal-cookie';
 import { Redirect } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
@@ -11,7 +10,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Avatar from '@material-ui/core/Avatar';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-
 
 class UserLogin extends Component {
     state={};
@@ -109,7 +107,6 @@ class UserLogin extends Component {
                         type="submit">
                         Login
                     </Button>
-
                     {/* <Button
                        size="lg" 
                        block

@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import LinesEllipsis from 'react-lines-ellipsis'
 import DrugDetial from './Drugdetial';
+import "../css/DrugMain.css";
 
 const styles = theme => ({
     icon: {
@@ -71,44 +72,46 @@ class DrugCard extends Component {
         return (
           <React.Fragment>
               {check ?  
-                  <Grid item key={movies.id} xs={12} >
-                    <DrugDetial 
-                      opens={this.state.opens} 
-                      send={this.handleSendClose} 
-                      ingredient_detail={movies.ingredient_detail} /*성분 */
-                      validity={movies.validity} /*유통기한 */
-                      company_name={movies.company_name} /*제조 회사 */
-                      usage={movies.usage} /*약 복용법 */
-                      div_name={movies.div_name}/*약 효능 */
-                      big_image={movies.big_image} /*약 이미지  */
-                    />
-                    <Card className={classes.card}>
-                      <CardMedia
-                        // className={classes.cardMedia}
-                        style={{paddingTop:'30.25%'}}
-                        image={img}
-                        title={img}
+                  <div>
+                    <Grid className="DrugCard"  item key={movies.id} xs={12} >
+                      <DrugDetial 
+                        opens={this.state.opens} 
+                        send={this.handleSendClose} 
+                        ingredient_detail={movies.ingredient_detail} /*성분 */
+                        validity={movies.validity} /*유통기한 */
+                        company_name={movies.company_name} /*제조 회사 */
+                        usage={movies.usage} /*약 복용법 */
+                        div_name={movies.div_name}/*약 효능 */
+                        big_image={movies.big_image} /*약 이미지  */
                       />
-                      <CardContent className={classes.cardContent}>
-                      <Typography gutterBottom variant="h5" component="h2">
-                         약 이름 : {NewName}
-                      </Typography>
-                      <Typography>
-                        제조 회사 : {movies.company_name}
-                      </Typography>
-                      <LinesEllipsis
-                           text={movies.manufacturing}
-                            maxLine='2'
-                            ellipsis='...'
-                            trimRight
-                            basedOn='letters'
-                      />  
-                      </CardContent>
-                      <CardActions>
-                        <Button size="small" color="primary" onClick={this.handleClickOpen} >detail</Button>
-                      </CardActions>
-                    </Card>
-                  </Grid> 
+                      <Card className={classes.card}>
+                        <CardMedia
+                          // className={classes.cardMedia}
+                          style={{paddingTop:'30.25%'}}
+                          image={img}
+                          title={img}
+                        />
+                        <CardContent className={classes.cardContent}>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          약 이름 : {NewName}
+                        </Typography>
+                        <Typography>
+                          제조 회사 : {movies.company_name}
+                        </Typography>
+                        <LinesEllipsis
+                            text={movies.manufacturing}
+                              maxLine='2'
+                              ellipsis='...'
+                              trimRight
+                              basedOn='letters'
+                        />  
+                        </CardContent>
+                        <CardActions>
+                          <Button size="small" color="primary" onClick={this.handleClickOpen} >detail</Button>
+                        </CardActions>
+                      </Card>
+                    </Grid> 
+                  </div>
                   :
                   <Grid item key={movies.id}  xs={12} sm={6} md={4}>
                   <DrugDetial 

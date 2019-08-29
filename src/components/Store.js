@@ -7,8 +7,10 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { withStyles } from '@material-ui/core/styles';
 import StoreAd from './StoreAd'
-import  img_3  from '../img/img_3.png';
+import  img_3  from '../img/img_2.png';
 import "../css/Store.css";
+import Line from './chart/line'
+import Bar from './chart/bar'
 
 const styles = theme => ({
     icon: {
@@ -112,8 +114,6 @@ class Store extends Component {
                           :
                           <Button variant="contained" color="primary" onClick={this.handleClickOpen}> 검색하기 </Button>
                         }
-                        
-                  
                         </Grid>
                     </Grid>
                     </div>
@@ -121,7 +121,8 @@ class Store extends Component {
                 </div>
                 {StoreAdShow ? <StoreAd select={this.state.select} StoreName={this.state.StoreName}/> : ""}
                 <div className={classes.GridImgBox} >
-                   <img className="Divimg" src={ img_3 } alt="img" />
+                   {/* <img className="Divimg" src={ img_3 } alt="img" /> */}
+                        <Bar/> 
                  </div>
             </div>
         );

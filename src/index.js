@@ -9,6 +9,7 @@ import rootReducer from './modules';
 import { Provider } from 'react-redux';
 import Register from './components/auth/Register'
 
+
 // **** 리덕스 개발자도구 적용
 const devTools =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();

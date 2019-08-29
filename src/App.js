@@ -7,6 +7,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import SearchIcon from '@material-ui/icons/Search';
+import HelpOutline from '@material-ui/icons/HelpOutline';
+
 import Place from '@material-ui/icons/Place';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -77,7 +79,8 @@ class App extends Component {
                 <MenuIcon  style={icon} onClick={this.handleDrawerToggle}/>
                 <Typography variant="h5" color="inherit" noWrap>DSS</Typography>
                 <div style={grow} />
-                <SearchIcon />
+                 <SearchIcon /> 
+                {/* <HelpOutline/> */}
                 {/*로그인 여부 체크 */}
                 {Loginstates ?
                 <Button  size="large"   style={Loginmargin} >
