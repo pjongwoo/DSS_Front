@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { withStyles } from '@material-ui/core/styles';
-import StoreAd from './StoreAd'
-import  img_3  from '../img/img_2.png';
+import StoreAd from './StoreAd';
 import "../css/Store.css";
-import Line from './chart/line'
 import Bar from './chart/bar'
 
 const styles = theme => ({
@@ -72,9 +69,10 @@ class Store extends Component {
             <div>
                 {/* Hero unit */}
                 <div className={classes.heroContent}>
-                    <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom style={{marginBottom:'4.2%'}}>
-                      You need pharmacy location information?
-                    </Typography>
+                 <div className="title"  align="center" color="textPrimary" gutterBottom >
+                   <strong style={{position:'relative',color:'#3f51b5'}}> 어떤 지역 , 어떤 도시  </strong>에  
+                    <br></br><o style={{position:'relative', top:'10px' }}>약국을 알고 싶으신가요? </o>
+                 </div>
                     <Container maxWidth="sm">
                     <div>
                       <InputGroup className="mb-4">

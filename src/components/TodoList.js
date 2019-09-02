@@ -14,12 +14,14 @@ class TodoList extends Component {
     
     _renderMovies = () => {
         const events = this.props.events
+        const del = this.props.del
         const movies = this.props.data.map((api) => {
           return (
             <TodoItem text={api.drug}      /*약 고유 ID */
                       done ={api.flag}
                       idx = {api.idx}
                       events ={events}
+                      del={del}
                 />
             )
         });

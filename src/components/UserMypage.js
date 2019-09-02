@@ -5,6 +5,8 @@ import TodoTemplate from './TodoTemplate'
 import TodoHead from './TodoHead'
 import TodoList from './TodoList'
 import TodoCreate from './TodoCreate'
+import { ImageFilterTiltShift } from 'material-ui/svg-icons';
+import Calendar from 'react-calendar';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -15,7 +17,9 @@ const GlobalStyle = createGlobalStyle`
 class UserMypage extends Component {
     constructor(props) {
         super(props);
-         this.state = {}
+         this.state = {
+            date: new Date(),
+         }
       
     }
     componentDidMount() {
@@ -29,10 +33,17 @@ class UserMypage extends Component {
       });
     };
     
+    _delete = (e) =>{
+        this.setState({
+            val : e
+        });
+    }
+
+
     // MYpage API 호출
     // UserNo : 고객 idx 
     _callApi =() => {
-      const  { UserNo , Loginstates }    = this.props
+      const  { UserNo  }    = this.props
       return fetch(
           "http://localhost:8080/userdrug/"+UserNo
       ).then(Response =>Response.json())
@@ -42,13 +53,19 @@ class UserMypage extends Component {
 
     render() {
         const { UserNo } = this.props;
+        console.log("state" + this.state.val)
         return (
             <div>
                 <GlobalStyle/>
                 <TodoTemplate>
                     <TodoHead/>
-                    <TodoList data={this.state.movies} events ={this._getMovies}/>
-                    <TodoCreate data={UserNo} events ={this._getMovies}/>
+                    <TodoList data={this.state.movies} events ={this._getMovies} del={this._delete}/>
+                    <TodoCreate data={UserNo} events ={this._getMovies} val={this.state.val}/>
+                    <Calendar
+          onChange={this.onChange}
+       
+          value={this.state.date}
+        />
                 </TodoTemplate>
             
             </div>
@@ -57,7 +74,6 @@ class UserMypage extends Component {
 }
 // props 로 넣어줄 스토어 상태값
 const mapStateToProps = state => ({
-    Loginstates: state.counter.Loginstates,
     UserNo: state.counter.No,
   });
   

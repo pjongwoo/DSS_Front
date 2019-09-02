@@ -66,7 +66,18 @@ function apisend(val, idx ){
         .catch(err =>console.log(err)); 
 }
 
-function TodoItem ({idx ,done ,text ,events }) {
+ //삭제 api 호출
+function apidel (idx){
+    const url = "http://localhost:8080/userdrug/"+idx
+    return fetch(url , {
+        method: 'DELETE',
+        mode: 'cors',
+      })
+      .then(response => response.json());
+  
+}
+
+function TodoItem ({idx ,done ,text ,events ,del}) {
     
     //done 값 치환 
     let val = ""
@@ -93,27 +104,13 @@ function TodoItem ({idx ,done ,text ,events }) {
         }
     }
 
-    //삭제 api 호출
+    //OnClick 함수 호출
     const deletesend = () =>{
 
-        const url = "http://localhost:8080/userdrug/"+idx
-        const options = {
-            method: 'DELETE',
-            mode: 'cors',
-            headers: {
-                "Access-Control-Request-Headers": "*",
-                "Access-Control-Request-Method": "*"
-            },
-          }
-        
-         fetch(url, options) 
-        .then(Response =>Response.json())
-        .then(json => json)
-        .catch(err =>console.log(err));
-      
+        apidel(idx)
         alert ("삭제 되었습니다. ")
-        events();
-      
+        del(true);
+        
     }
     return (
         <TodoItemBlock>

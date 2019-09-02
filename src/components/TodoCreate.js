@@ -83,7 +83,7 @@ const AddButton =styled.button`
     margin-top: 10px;
 `;
 
-function TodoCreate({data, events }){
+function TodoCreate({data, events, val }){
     
     const [open , setOpen] = useState(false);
     const [drug , setDrug] = useState('');
