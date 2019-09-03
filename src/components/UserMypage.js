@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { createGlobalStyle } from 'styled-components'
 import TodoTemplate from './TodoTemplate'
 import TodoHead from './TodoHead'
+import TodoHead2 from './TodoHead2'
 import TodoList from './TodoList'
 import TodoCreate from './TodoCreate'
-import { ImageFilterTiltShift } from 'material-ui/svg-icons';
 import Calendar from 'react-calendar';
 
 const GlobalStyle = createGlobalStyle`
@@ -58,14 +58,9 @@ class UserMypage extends Component {
             <div>
                 <GlobalStyle/>
                 <TodoTemplate>
-                    <TodoHead/>
+                    <TodoHead2/>
                     <TodoList data={this.state.movies} events ={this._getMovies} del={this._delete}/>
                     <TodoCreate data={UserNo} events ={this._getMovies} val={this.state.val}/>
-                    <Calendar
-          onChange={this.onChange}
-       
-          value={this.state.date}
-        />
                 </TodoTemplate>
             
             </div>

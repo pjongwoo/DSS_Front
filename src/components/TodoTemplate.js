@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import "../css/TodoTemplate.css";
 
 const TodoTemplateBlock = styled.div`
-    width: 512px;
-    height: 768px;
+   
 
     position : relative;
     background: white;
@@ -19,7 +19,7 @@ const TodoTemplateBlock = styled.div`
     
 `;
 function TodoTemplate({ children }){
-    return <TodoTemplateBlock> {children}</TodoTemplateBlock>
+    return <TodoTemplateBlock className="MypageMain"> {children}</TodoTemplateBlock>
 }
 
 

@@ -1,5 +1,6 @@
 import React , { useState } from 'react';
 import { Button, Form } from "react-bootstrap";
+
 const Register = () => {
     const [Email,setEmail] = useState('');
     const [Password,setPassword] = useState('');

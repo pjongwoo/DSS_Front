@@ -1,0 +1,14 @@
+@media screen and (min-width: 769px) {
+   
+    .MypageMain{
+        width: 512px;
+        height: 768px;
+    }
+ }
+  
+ @media screen and (max-width: 768px) {
+    .MypageMain{
+        width: 312px;
+        height: 468px;
+    }
+}

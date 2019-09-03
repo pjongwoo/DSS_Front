@@ -118,10 +118,13 @@ class Store extends Component {
                     </Container>
                 </div>
                 {StoreAdShow ? <StoreAd select={this.state.select} StoreName={this.state.StoreName}/> : ""}
+                {StoreAdShow ? "" 
+                :
                 <div className={classes.GridImgBox} >
-                   {/* <img className="Divimg" src={ img_3 } alt="img" /> */}
-                        <Bar/> 
+                     <Bar/> 
                  </div>
+                } 
+                 
             </div>
         );
     }

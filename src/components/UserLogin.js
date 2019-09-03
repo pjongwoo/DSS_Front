@@ -73,7 +73,7 @@ class UserLogin extends Component {
         const   Loginstates   = this.props.Loginstates;
         return (
             <div className="Login">
-                 <Avatar style={{    margin: '0 auto' , background :'#f50057'}}>
+                <Avatar className="LockOutlinedIcon" style={{ background :'#f50057'}}>
                     <LockOutlinedIcon />
                  </Avatar>
                 <Typography component="h1" variant="h5" style={{    padding: '1rem'}}>

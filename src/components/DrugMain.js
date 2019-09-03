@@ -10,17 +10,17 @@ import "../css/DrugMain.css";
 import { Slide } from 'react-slideshow-image';
 import Box from '@material-ui/core/Box';
 
-const slideImages = [
-  '/static/media/img_2.cf44b5fe.png',
-  '/static/media/img_3.a76943bd.png',
-];
+ const slideImages = [
+   'http://www.fujifilm.co.kr/event/photobook/2018/20180222_event/images/img_2.png',
+   'http://www.fujifilm.co.kr/event/photobook/2018/20180222_event/images/img_3.png',
+ ];
 
 const properties = {
   duration: 5000,
   transitionDuration: 500,
   infinite: true,
   indicators: true,
-  arrows: true,
+  arrows: false,
   onChange: (oldIndex, newIndex) => {
     console.log(`slide transition from ${oldIndex} to ${newIndex}`);
   }
