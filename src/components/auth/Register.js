@@ -32,17 +32,17 @@ const Register = () => {
         setPassword(e.target.value);
     };
 
-    const onChangeName = (e) => {
-        setName(e.target.value);
-    };
+     const onChangeName = (e) => {
+         setName(e.target.value);
+     };
 
-    const onChangeGender = (e) => {
-        setGender(e.target.value);
-    };
+     const onChangeGender = (e) => {
+         setGender(e.target.value);
+     };
 
-    const onChangeJob = (e) => {
-        setJob(e.target.value);
-    };
+     const onChangeJob = (e) => {
+         setJob(e.target.value);
+     };
 
 
 
@@ -60,7 +60,7 @@ const Register = () => {
     
                 <Form.Group controlId="formBasicName">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="input" placeholder="Enter Name" />
+                    <Form.Control type="input" placeholder="Name" />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicGender">

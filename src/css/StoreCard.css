@@ -1,0 +1,17 @@
+
+@media screen and (min-width: 769px) {
+    .Divimage {
+        width: 128px;
+        height: 128px;
+    }
+
+ }
+  
+ @media screen and (max-width: 768px) {
+    .Divimage {
+        position: relative;
+        width: 100%;
+        height: 128px;
+        left: 70%;
+    }
+}

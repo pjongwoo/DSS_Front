@@ -77,7 +77,7 @@ function apidel (idx){
   
 }
 
-function TodoItem ({idx ,done ,text ,events ,del}) {
+function TodoItem ({idx ,done ,text ,events ,time}) {
     
     //done 값 치환 
     let val = ""
@@ -93,13 +93,13 @@ function TodoItem ({idx ,done ,text ,events ,del}) {
             val = true;
             apisend(val,idx);
             alert ("변경 되었습니다. ")
-            events();
+            events(time);
         
         }else{
             val = false;
             apisend(val,idx);
             alert ("변경 되었습니다. ")
-            events();
+            events(time);
         
         }
     }
@@ -109,7 +109,7 @@ function TodoItem ({idx ,done ,text ,events ,del}) {
 
         apidel(idx)
         alert ("삭제 되었습니다. ")
-        del(true);
+        events(time);
         
     }
     return (

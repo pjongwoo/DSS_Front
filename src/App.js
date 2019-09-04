@@ -7,8 +7,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import SearchIcon from '@material-ui/icons/Search';
-import HelpOutline from '@material-ui/icons/HelpOutline';
-
 import Place from '@material-ui/icons/Place';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';

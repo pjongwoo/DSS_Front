@@ -45,12 +45,11 @@ function TodoHead ({name}) {
 const mapStateToProps = state => ({
     Loginstates: state.counter.Loginstates,
     name: state.counter.Name,
-  });
+});
   
-
 export default connect(
   mapStateToProps,
-  )(TodoHead);
+)(TodoHead);
   
 
 

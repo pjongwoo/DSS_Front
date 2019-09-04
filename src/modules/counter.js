@@ -1,7 +1,7 @@
 // 액션 타입 정의
 const INCREMENT = 'counter/INCREMENT';
 const DECREMENT = 'counter/DECREMENT';
-
+const TIME ='counter/TIME'
 // **** 액션 생섬함수 정의
 
 // export const changeColor = color => ({ type: CHANGE_COLOR, color });
@@ -14,11 +14,17 @@ export const increment = data => ({
 // export const increment = createAction(INCREMENT, data => data );
 export const decrement = () => ({ type: DECREMENT });
 
+export const time = data => ({ 
+  type: TIME ,
+  data
+});
+
 // **** 초기상태 정의
 const initialState = {
     No : '',
     Name : '',
     Loginstates: false,
+    Time:'',
 
   };
 
@@ -36,6 +42,11 @@ export default function counter(state = initialState, action) {
           ...state,
           Loginstates : false,
         };
+      case TIME:
+          return {
+            ...state,
+            Time : action.data,
+          };
       default:
         return state;
     }

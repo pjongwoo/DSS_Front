@@ -4,7 +4,6 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Rating from '@material-ui/lab/Rating';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { SnackbarProvider, useSnackbar } from 'notistack';
 
@@ -32,8 +31,6 @@ const useStyles = makeStyles(theme => ({
   const handleClick = () => {
     enqueueSnackbar('참여해주셔서 감사합니다.');
   };
-
- 
 
   const handleOpen = () => {
     setOpen(true);
@@ -72,7 +69,6 @@ const useStyles = makeStyles(theme => ({
                   setValue(newValue);
                   handleClick();
                 }}
-                // onClick={handleClick}
               />
            </Box>
           </div>

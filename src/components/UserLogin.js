@@ -28,24 +28,27 @@ class UserLogin extends Component {
    }
    //submit 함수 
    submitButton(e) {
-        e.preventDefault()
-        const email = this.state.email;
-        const password = this.state.password;
-        
-        console.log("email" + email);
-        console.log("password" + password);
-        
-        //Login API 호출 
-        this.LoginApi()
-        .then((response) => {
-            //Return 값 확인
-            console.log(response.data);
-            if (response.data.user_no > 0)
-            {
-                //dispatch 함수 호출
-                const { increment } = this.props;
-                increment(response.data);
-            }else{
+    e.preventDefault()
+  
+    //Login API 호출 
+    this.LoginApi()
+    .then((response) => {
+        //Return 값 확인
+        console.log(response.data);
+        if (response.data.user_no > 0)
+        {
+            //dispatch 함수 호출
+            const { increment } = this.props;
+            increment(response.data);
+        }else{
+            if (response.data.userstate === 0) {
+                alert("이메일 인증을 하셔야 합니다.");
+                this.setState({
+                    email: '',
+                    password :'',
+
+                });  
+            }else {
                 alert("ID/PW 확인 부탁드립니다.");
                 this.setState({
                     email: '',
@@ -53,8 +56,10 @@ class UserLogin extends Component {
 
                 });  
             }
-        })    
-    }
+        
+        }
+     })    
+   }
 
     /* API 호출 */
     LoginApi(){
@@ -107,14 +112,7 @@ class UserLogin extends Component {
                         type="submit">
                         Login
                     </Button>
-                    {/* <Button
-                       size="lg" 
-                       block
-                       variant="secondary"
-                        onClick={this.submitButton}
-                        type="submit">
-                        Sinup
-                    </Button> */}
+
                     <Grid item className="SingUp">
                         <Link href="Register" className="SingUpLink" style={{  marginLeft: 'auto'  }} >
                             {"Don't have an account? Sign Up"}

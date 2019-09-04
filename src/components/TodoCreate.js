@@ -3,7 +3,6 @@ import styled , { css }from 'styled-components';
 import { MdAdd } from 'react-icons/md'
 import { post } from 'axios';
 
-
 const CircleButton = styled.button`
     background : #38d9a9;
     &:hover {
@@ -92,16 +91,18 @@ function TodoCreate({data, events, val }){
     }
     const onToggle = () => {
         setOpen(!open);
-        events();
+        events(val);
     }
     
     /* 등록 API 호출 */
     const addDrug = (e) => {
+        console.log("addDrug val" + val)
         const url = 'http://localhost:8080/userdrug/';
         const formData = new FormData();
         formData.append('drug', drug)
         formData.append('flag', false)
         formData.append('No', data)
+        formData.append('regdate', val)
         console.log(drug);
         const config = {
             headers: {

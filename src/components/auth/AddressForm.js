@@ -10,6 +10,7 @@ import "../../css/AddressForm.css";
 export default function AddressForm() {
     const [Email,setEmail] = useState('');
     const [Password,setPassword] = useState('');
+    const [PasswordCheck,setPasswordCheck] = useState('');
     const [Name,setName] = useState('');
     const [Gender,setGender] = useState('');
     const [Job,setJob] = useState('');
@@ -22,6 +23,11 @@ export default function AddressForm() {
     const onChangePassword = (e) => {
         setPassword(e.target.value);
     };
+
+    const onChangePasswordCheck = (e) => {
+      setPasswordCheck(e.target.value);
+  };
+
 
     const onChangeName = (e) => {
         setName(e.target.value);
@@ -37,8 +43,11 @@ export default function AddressForm() {
 
     const onSubmit = (e) => {
         e.preventDefault();
+           if(Password !== PasswordCheck){
+              alert("비밀번호 체크 확인 부탁드립니다.");
+              return false;
+         }
          setopen(true);
-        //  console.log(open);
          const url = 'http://localhost:8080/dssuser/';
          const formData = new FormData();
          formData.append('Email', Email)
@@ -90,6 +99,7 @@ export default function AddressForm() {
             name="Password"
             label="Password"
             fullWidth
+            type="password"
             autoComplete="Password"
             onChange={onChangePassword}
           />
@@ -100,7 +110,9 @@ export default function AddressForm() {
             name="PasswordCheck"
             label="PasswordCheck"
             fullWidth
+            type="password"
             autoComplete="PasswordCheck"
+            onChange={onChangePasswordCheck}
           />
         </Grid>
         <Grid item xs={12} sm={6}>

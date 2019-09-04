@@ -4,6 +4,8 @@ import Calendar from 'react-calendar';
 import moment from 'moment';
 import Clock from 'react-live-clock'
 import Typed from 'react-typed';
+import { connect } from 'react-redux';
+import { caldate } from '../modules/date';
 
 const TodoHeadBlock = styled.div`
     margin: 0 auto;
@@ -33,7 +35,7 @@ const TodoHeadBlock = styled.div`
     }
 `;
 
-class TodoHead2 extends Component {
+class TodoNewHead extends Component {
     constructor(props) {
         super(props);
          this.state = {
@@ -44,17 +46,24 @@ class TodoHead2 extends Component {
   
     onChange = (date) => {
         const val =  moment(date).format("YYYY-MM-DD")
-        alert(val);     
-        
-      }
+         
+        const { caldate } = this.props;
+        const events  = this.props.events
+        caldate(val);
+        events(val);
+    }
     
     render() {
         return (
             <TodoHeadBlock>
-                 <h1>  <Typed
-                    strings={['Today']}
-                    typeSpeed={40}
-                />   <br></br> <Clock format={'YYYY년 MM 월 DD 일   '}  /> </h1>
+                    <h1> 
+                       <Typed 
+                        strings={['Today']}
+                        typeSpeed={300}
+                        />   
+                        <br></br> 
+                       <Clock format={'YYYY년 MM 월 DD 일    '} />  
+                    </h1>
                     <Calendar 
                         onChange={this.onChange}
                         value={this.state.date}
@@ -64,4 +73,17 @@ class TodoHead2 extends Component {
     }
 }
 
-export default TodoHead2;
+
+const mapStateToProps = state => ({
+    Loginstates: state.counter.Loginstates,
+});
+  
+ // props 로 넣어줄 액션 생성함수
+const mapDispatchToProps = dispatch => ({
+    caldate: (data) => dispatch(caldate(data)),
+});
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(TodoNewHead);

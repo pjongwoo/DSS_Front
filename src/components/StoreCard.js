@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import  StoreCards  from '../img/StoreCard.jpg';
 import { Link } from 'react-router-dom';
 import LinesEllipsis from 'react-lines-ellipsis'
+import "../css/StoreCard.css";
 
 const styles = theme => ({
 
@@ -29,7 +30,7 @@ const styles = theme => ({
       },
       button: {
         margin: theme.spacing(1),
-        width: '35%',
+        width: '100%',
         padding: '1px',
       },
       input: {
@@ -63,7 +64,7 @@ class StoreCard extends Component {
             <Paper className={classes.paper}>
               <Grid container spacing={3} >
                 <Grid item>
-                  <ButtonBase className={classes.image}>
+                  <ButtonBase className="Divimage">
                     <img className={classes.img} alt="complex" src={ StoreCards } />
                   </ButtonBase>
                 </Grid>
@@ -80,9 +81,6 @@ class StoreCard extends Component {
                             trimRight
                             basedOn='letters'
                       />  
-                      {/* <Typography variant="body2" gutterBottom>
-                        약국 주소 : {movies.dutyAddr}
-                      </Typography> */}
                       <Typography variant="body2" color="textSecondary">
                         전화 번호 : {movies.dutyTel1 }
                       </Typography>

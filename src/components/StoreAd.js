@@ -55,8 +55,6 @@ class StoreAd extends Component {
   _callApi =() => {
     const select = this.props.select;
     const StoreName = this.props.StoreName;
-    console.log("Select Value : " + select )
-    console.log("StoreName Value : " + StoreName)
     return fetch(
         "http://211.239.124.237:19613/store/address/"+select+"/"+StoreName
       )

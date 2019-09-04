@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createGlobalStyle } from 'styled-components'
 import TodoTemplate from './TodoTemplate'
-import TodoHead from './TodoHead'
-import TodoHead2 from './TodoHead2'
+import TodoNewHead from './TodoNewHead'
 import TodoList from './TodoList'
 import TodoCreate from './TodoCreate'
-import Calendar from 'react-calendar';
+import moment from 'moment';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -23,11 +22,13 @@ class UserMypage extends Component {
       
     }
     componentDidMount() {
-        this._getMovies();
+        const date = new Date();
+        const val =  moment(date).format("YYYY-MM-DD")
+        this._getMovies(val);
     }
     
-    _getMovies = async () => {
-      const movies = await this._callApi();
+    _getMovies = async (val) => {
+      const movies = await this._callApi(val);
       this.setState({
          movies
       });
@@ -39,28 +40,34 @@ class UserMypage extends Component {
         });
     }
 
-
-    // MYpage API 호출
-    // UserNo : 고객 idx 
-    _callApi =() => {
+    _callApi =(val) => {
       const  { UserNo  }    = this.props
       return fetch(
-          "http://localhost:8080/userdrug/"+UserNo
+        "http://localhost:8080/userdrug/"+UserNo+"/"+val
       ).then(Response =>Response.json())
        .then(json => json)
       .catch(err =>console.log(err));
     }
 
     render() {
-        const { UserNo } = this.props;
-        console.log("state" + this.state.val)
+        const { UserNo, Caldata } = this.props;
+        let Caldatas =""
+       if (Caldata==="") {
+         const date = new Date();
+         const NewDate =  moment(date).format("YYYY-MM-DD")
+         Caldatas = NewDate
+       }else{
+         Caldatas = this.props.Caldata
+       }
+       console.log(Caldatas)
+        
         return (
             <div>
                 <GlobalStyle/>
                 <TodoTemplate>
-                    <TodoHead2/>
-                    <TodoList data={this.state.movies} events ={this._getMovies} del={this._delete}/>
-                    <TodoCreate data={UserNo} events ={this._getMovies} val={this.state.val}/>
+                    <TodoNewHead events={this._getMovies}/>
+                    <TodoList data={this.state.movies} events ={this._getMovies} time={Caldatas}/>
+                    <TodoCreate data={UserNo} events ={this._getMovies} val={Caldatas}/>
                 </TodoTemplate>
             
             </div>
@@ -70,6 +77,7 @@ class UserMypage extends Component {
 // props 로 넣어줄 스토어 상태값
 const mapStateToProps = state => ({
     UserNo: state.counter.No,
+    Caldata : state.date.Caldata,
   });
   
 

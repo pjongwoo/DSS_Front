@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Grid from '@material-ui/core/Grid';
 import Storeevaluation from './Storeevaluation'
-import MyApp from './auth/MyApp'
+
 
 const styles = theme => ({
 
@@ -85,12 +85,6 @@ class StoreMap extends Component {
            </Typography>
         
           <div className="map" id="map" style={ { width: '90%', height: '500px' ,margin: '0 auto' }}>   </div>
-         
-          {/* <div className={classes.but_div}>
-            <Button variant="contained" className={classes.button}>Default </Button>
-
-            <Button variant="contained" className={classes.button}>Default </Button>
-          </div> */}
            
          <Grid item xs={12} md={6} style={{    margin: '0 auto', marginTop:'2%'}} >
              <ButtonGroup fullWidth aria-label="full width outlined button group">
