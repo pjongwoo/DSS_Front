@@ -48,7 +48,7 @@ export default function AddressForm() {
               return false;
          }
          setopen(true);
-         const url = 'http://localhost:8080/dssuser/';
+         const url = 'http://3.18.0.46:8080/dssuser/';
          const formData = new FormData();
          formData.append('Email', Email)
          formData.append('Password', Password)

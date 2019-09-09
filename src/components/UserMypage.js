@@ -43,7 +43,7 @@ class UserMypage extends Component {
     _callApi =(val) => {
       const  { UserNo  }    = this.props
       return fetch(
-        "http://localhost:8080/userdrug/"+UserNo+"/"+val
+        "http://3.18.0.46:8080/userdrug/"+UserNo+"/"+val
       ).then(Response =>Response.json())
        .then(json => json)
       .catch(err =>console.log(err));

@@ -63,7 +63,7 @@ class UserLogin extends Component {
 
     /* API 호출 */
     LoginApi(){
-        const url = 'http://localhost:8080/dssuser/userCheck/';
+        const url = 'http://3.18.0.46:8080/dssuser/userCheck/';
         const formData = new FormData();
         formData.append('email', this.state.email)
         formData.append('pwd', this.state.password)

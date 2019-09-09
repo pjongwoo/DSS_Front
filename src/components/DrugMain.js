@@ -73,7 +73,6 @@ class DrugMain extends Component {
   }
   //Click 함수
   handleClickOpen = (e) => {
-    console.log (this.state.opens);
     this.setState({
       opens: !this.state.opens,
       focus : false

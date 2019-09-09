@@ -97,7 +97,7 @@ function TodoCreate({data, events, val }){
     /* 등록 API 호출 */
     const addDrug = (e) => {
         console.log("addDrug val" + val)
-        const url = 'http://localhost:8080/userdrug/';
+        const url = 'http://3.18.0.46:8080/userdrug/';
         const formData = new FormData();
         formData.append('drug', drug)
         formData.append('flag', false)

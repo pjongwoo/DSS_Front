@@ -59,7 +59,7 @@ const Text = styled.div `
 //Flag 변경 API 호출
 function apisend(val, idx ){
     return fetch(
-        "http://localhost:8080/userdrug?flag="+ val + "&no=" + idx    
+        "http://3.18.0.46:8080/userdrug?flag="+ val + "&no=" + idx    
       )
         .then(Response =>Response.json())
         .then(json => json)
@@ -68,7 +68,7 @@ function apisend(val, idx ){
 
  //삭제 api 호출
 function apidel (idx){
-    const url = "http://localhost:8080/userdrug/"+idx
+    const url = "http://3.18.0.46:8080/userdrug/"+idx
     return fetch(url , {
         method: 'DELETE',
         mode: 'cors',
