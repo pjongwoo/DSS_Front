@@ -144,7 +144,7 @@ class App extends Component {
                    <Route path="/Login" component={UserLogin}/>  {/* 약국 검색*/}        
                    <Route path="/Mypage" component={Mypage}/>  {/* MyPage */}      
                    <Route path="/LogOut" component={UserLogOut}/>  {/* LogOut */}        
-                   <Route path="/Register" component={Register}/>  {/* LogOut */}   
+                   <Route path="/Register" component={Register}/>  {/* 회원가입 */}   
                 </Switch>
             </div>
             {/* Footer */}

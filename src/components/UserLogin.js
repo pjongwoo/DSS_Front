@@ -10,6 +10,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Avatar from '@material-ui/core/Avatar';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+import { NavLink } from 'react-router-dom';
 
 class UserLogin extends Component {
     state={};
@@ -114,9 +115,10 @@ class UserLogin extends Component {
                     </Button>
 
                     <Grid item className="SingUp">
-                        <Link href="Register" className="SingUpLink" style={{  marginLeft: 'auto'  }} >
-                            {"Don't have an account? Sign Up"}
-                        </Link>
+                        <NavLink to="/Register" className="SingUpLink"  style={{  marginLeft: 'auto'  }}>
+                            {"Don't have an account? Sign Up "}
+                        </NavLink>
+                      
                     </Grid>
                 </form>
                 { Loginstates ?<Redirect to="/"/>  : "" }
