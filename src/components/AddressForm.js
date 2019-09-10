@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import { Redirect } from 'react-router-dom';
 import { Button, Form } from "react-bootstrap";
 import { post } from 'axios';
-import "../../css/AddressForm.css";
+import "../css/AddressForm.css";
 
 export default function AddressForm() {
     const [Email,setEmail] = useState('');

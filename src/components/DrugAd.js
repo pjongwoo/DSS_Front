@@ -47,7 +47,7 @@ class DrugAd extends Component {
 
     // select = 1 (ID 검색) select = 2 (약이름 검색)
     if (select ==="1"){
-      url ="http://211.239.124.237:19613/drug/findId/" + drugName
+      url ="http://211.239.124.237:19613/drug/findId/"+ drugName
     }else {
       url = "http://211.239.124.237:19613/drug/findName/" + drugName
     }

@@ -27,7 +27,7 @@ import { connect } from 'react-redux';
 import Mypage from './components/UserMypage'
 import { decrement } from './modules/counter';
 import UserLogOut from './components/UserLogOut'
-import Register from './components/auth/AddressForm'
+import Register from './components/AddressForm'
 import './App.css';
 
 
